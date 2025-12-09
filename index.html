@@ -540,9 +540,10 @@
       color: #666;
     }
 
-    .support-section {
-      margin-top: 30px;
-      text-align: center;
+    .support-controls {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 8px;
     }
 
     .bmc-button {
@@ -604,6 +605,12 @@
     <input type="file" id="fileInput" accept="image/png,image/jpeg,image/webp,image/heic,image/avif,image/gif,image/tiff,image/bmp">
 
     <div class="controls">
+      <div class="support-controls">
+        <a href="https://buymeacoffee.com/ostapnagovitsyn" target="_blank" rel="noopener" class="bmc-button">
+          <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="36">
+        </a>
+      </div>
+
       <div class="control-group">
         <label>
           <span>Brightness Boost</span>
@@ -615,9 +622,9 @@
       <div class="control-group">
         <label>
           <span>Saturation</span>
-          <span class="value-display" id="saturationValue">0.5x</span>
+          <span class="value-display" id="saturationValue">1x</span>
         </label>
-        <input type="range" id="saturationSlider" min="0.5" max="2" step="0.1" value="0.5">
+        <input type="range" id="saturationSlider" min="0.5" max="2" step="0.1" value="1">
       </div>
 
       <div class="control-group">
@@ -670,13 +677,9 @@
       </p>
     </div>
 
-    <div class="support-section">
-      <a href="https://buymeacoffee.com/ostapnagovitsyn" target="_blank" rel="noopener" class="bmc-button">
-        <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="40">
-      </a>
-    </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/pako@2.1.0/dist/pako.min.js"></script>
   <script src="hdr-converter.js"></script>
   <script>
     // Load reference HDR data on page load

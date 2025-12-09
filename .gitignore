@@ -8,3 +8,9 @@
 # OS files
 .DS_Store
 *.log
+
+# Node
+node_modules/
+
+# Test files
+*.wasm
