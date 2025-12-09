@@ -539,6 +539,24 @@
     .download-overlay.disabled span {
       color: #666;
     }
+
+    .support-section {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .bmc-button {
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+
+    .bmc-button:hover {
+      transform: scale(1.05);
+    }
+
+    .bmc-button img {
+      display: block;
+    }
   </style>
 </head>
 <body>
@@ -601,6 +619,14 @@
         </label>
         <input type="range" id="saturationSlider" min="0.5" max="2" step="0.1" value="0.5">
       </div>
+
+      <div class="control-group">
+        <label>
+          <span>Quality</span>
+          <span class="value-display" id="qualityValue">100%</span>
+        </label>
+        <input type="range" id="qualitySlider" min="25" max="100" step="5" value="100">
+      </div>
     </div>
 
     <div class="status" id="status"></div>
@@ -643,10 +669,19 @@
         On older screens, it will look like a normal image.
       </p>
     </div>
+
+    <div class="support-section">
+      <a href="https://buymeacoffee.com/ostapnagovitsyn" target="_blank" rel="noopener" class="bmc-button">
+        <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="40">
+      </a>
+    </div>
   </div>
 
   <script src="hdr-converter.js"></script>
   <script>
+    // Load reference HDR data on page load
+    window.HDRConverter.loadReference('QbPcvO4h_400x400.png');
+
     const fileInput = document.getElementById('fileInput');
     const originalImg = document.getElementById('originalImg');
     const hdrImg = document.getElementById('hdrImg');
@@ -657,6 +692,7 @@
 
     const brightnessSlider = document.getElementById('brightnessSlider');
     const saturationSlider = document.getElementById('saturationSlider');
+    const qualitySlider = document.getElementById('qualitySlider');
 
     let selectedFile = null;
     let resultBlob = null;  // Stores the converted image blob for download
@@ -731,6 +767,14 @@
       convert();
     });
 
+    qualitySlider.addEventListener('input', (e) => {
+      document.getElementById('qualityValue').textContent = e.target.value + '%';
+    });
+
+    qualitySlider.addEventListener('change', () => {
+      convert();
+    });
+
     async function convert() {
       if (isConverting) return;
 
@@ -755,7 +799,8 @@
         // Convert using client-side HDR converter
         const result = await window.HDRConverter.convert(imageSource, {
           brightness: parseFloat(brightnessSlider.value),
-          saturation: parseFloat(saturationSlider.value)
+          saturation: parseFloat(saturationSlider.value),
+          quality: parseInt(qualitySlider.value) / 100
         });
 
         status.className = 'status';
