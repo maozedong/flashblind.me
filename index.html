@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <title>Glow Avatar Generator</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0a0a0a;
+      color: #e5e5e5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-align: center;
+    }
+
+    .subtitle {
+      color: #888;
+      margin-bottom: 40px;
+      text-align: center;
+      max-width: 500px;
+      padding: 0 20px;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      max-width: 700px;
+      width: 100%;
+    }
+
+    #fileInput {
+      display: none;
+    }
+
+    .controls {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      background: #151515;
+      padding: 24px;
+      border-radius: 16px;
+      width: 100%;
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .control-group label {
+      font-size: 14px;
+      color: #aaa;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    input[type="range"] {
+      flex: 1;
+      height: 6px;
+      -webkit-appearance: none;
+      appearance: none;
+      background: #333;
+      border-radius: 3px;
+      outline: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #feca57;
+      cursor: pointer;
+    }
+
+    .value-display {
+      min-width: 50px;
+      text-align: right;
+      color: #feca57;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .status {
+      padding: 12px 20px;
+      border-radius: 12px;
+      text-align: center;
+      display: none;
+    }
+
+    .status.active {
+      display: block;
+    }
+
+    .status.loading {
+      background: rgba(254, 202, 87, 0.1);
+      border: 1px solid rgba(254, 202, 87, 0.3);
+      color: #feca57;
+    }
+
+    .status.error {
+      background: rgba(255, 71, 87, 0.1);
+      border: 1px solid rgba(255, 71, 87, 0.3);
+      color: #ff4757;
+    }
+
+    .info-box {
+      background: rgba(72, 219, 251, 0.1);
+      border: 1px solid rgba(72, 219, 251, 0.3);
+      border-radius: 12px;
+      padding: 16px;
+      font-size: 14px;
+      color: #48dbfb;
+      text-align: center;
+    }
+
+    .info-box.hdr-not-supported {
+      background: rgba(255, 200, 0, 0.1);
+      border-color: rgba(255, 200, 0, 0.3);
+      color: #ffc800;
+    }
+
+    .platforms-section {
+      background: #151515;
+      border-radius: 16px;
+      padding: 24px;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .platforms-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #e5e5e5;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .platforms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+    }
+
+    .platform-card {
+      background: #1a1a1a;
+      border-radius: 12px;
+      padding: 14px;
+      text-align: center;
+    }
+
+    .platform-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: #e5e5e5;
+      margin-bottom: 6px;
+    }
+
+    .platform-status {
+      font-size: 13px;
+      color: #888;
+    }
+
+    .platform-status.works {
+      color: #4ade80;
+    }
+
+    .platform-status.partial {
+      color: #fbbf24;
+    }
+
+    .platform-status.limited {
+      color: #f97316;
+    }
+
+    .platforms-note {
+      margin-top: 20px;
+      font-size: 15px;
+      color: #888;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .platforms-note strong {
+      color: #feca57;
+    }
+
+    @media (max-width: 520px) {
+      .platforms-section {
+        padding: 20px;
+        margin-top: 8px;
+      }
+
+      .platforms-title {
+        font-size: 18px;
+        margin-bottom: 16px;
+      }
+
+      .platforms-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .platform-card {
+        padding: 14px 12px;
+      }
+
+      .platform-name {
+        font-size: 15px;
+      }
+
+      .platform-status {
+        font-size: 12px;
+      }
+
+      .platforms-note {
+        font-size: 14px;
+        margin-top: 16px;
+      }
+    }
+
+    .comparison {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: nowrap;
+    }
+
+    .image-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .image-container {
+      position: relative;
+      cursor: pointer;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .preview-img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+      display: block;
+    }
+
+    .preview-img:hover {
+      transform: scale(1.05);
+    }
+
+    .image-label {
+      font-size: 13px;
+      color: #888;
+    }
+
+    .image-hint {
+      font-size: 11px;
+      color: #feca57;
+    }
+
+    .hdr-hint {
+      font-size: 11px;
+      color: #ff00ff;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+
+    .arrow {
+      font-size: 32px;
+      color: #feca57;
+      flex-shrink: 0;
+    }
+
+    /* Mobile-only elements */
+    .mobile-view {
+      display: none;
+    }
+
+    .mobile-buttons {
+      display: none;
+    }
+
+    /* Mobile layout */
+    @media (max-width: 520px) {
+      body {
+        padding: 30px 16px;
+      }
+
+      h1 {
+        font-size: 1.6rem;
+      }
+
+      .subtitle {
+        font-size: 14px;
+        margin-bottom: 24px;
+      }
+
+      .container {
+        gap: 20px;
+      }
+
+      /* Hide desktop comparison on mobile */
+      .comparison {
+        display: none;
+      }
+
+      /* Show mobile view */
+      .mobile-view {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .mobile-image-container {
+        position: relative;
+        border-radius: 50%;
+        overflow: hidden;
+        cursor: pointer;
+      }
+
+      .mobile-main-img {
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        object-fit: cover;
+        display: block;
+        transition: opacity 0.3s ease;
+      }
+
+      .mobile-original-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        object-fit: cover;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .mobile-image-container:hover .mobile-original-img,
+      .mobile-image-container:active .mobile-original-img {
+        opacity: 1;
+      }
+
+      .mobile-hint {
+        font-size: 11px;
+        color: #888;
+      }
+
+      .mobile-buttons {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+      }
+
+      .mobile-btn {
+        padding: 12px 20px;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        border: none;
+        transition: all 0.2s ease;
+      }
+
+      .mobile-btn-upload {
+        background: #222;
+        color: #feca57;
+        border: 1px solid #333;
+      }
+
+      .mobile-btn-download {
+        background: linear-gradient(135deg, #feca57, #ff9f43);
+        color: #000;
+      }
+
+      .controls {
+        padding: 20px;
+        gap: 16px;
+      }
+
+      .control-group label {
+        font-size: 13px;
+      }
+
+      .value-display {
+        font-size: 13px;
+      }
+
+      .info-box {
+        font-size: 13px;
+        padding: 14px;
+      }
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid #feca57;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .upload-overlay,
+    .download-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .image-container:hover .upload-overlay,
+    .image-container:hover .download-overlay {
+      opacity: 1;
+    }
+
+    .upload-overlay span {
+      color: #feca57;
+      font-size: 14px;
+      font-weight: 600;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+    }
+
+    .download-overlay span {
+      color: #ff00ff;
+      font-size: 14px;
+      font-weight: 600;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+    }
+
+    .download-overlay.disabled span {
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <h1>Glow Avatar Generator</h1>
+  <p class="subtitle">Make your avatar glow brighter than everything else</p>
+
+  <div class="container">
+    <!-- Mobile view: single image with hover to see original -->
+    <div class="mobile-view">
+      <div class="mobile-image-container">
+        <img src="demo.png" alt="Glow" class="mobile-main-img" id="mobileHdrImg">
+        <img src="demo-sdr.png" alt="Original" class="mobile-original-img" id="mobileOriginalImg">
+      </div>
+      <span class="mobile-hint">Hold to see original</span>
+    </div>
+
+    <div class="mobile-buttons">
+      <button class="mobile-btn mobile-btn-upload" id="mobileUploadBtn">Upload</button>
+      <button class="mobile-btn mobile-btn-download" id="mobileDownloadBtn">Download</button>
+    </div>
+
+    <!-- Desktop view: side by side comparison -->
+    <div class="comparison">
+      <div class="image-box">
+        <div class="image-container" id="uploadContainer">
+          <img src="demo-sdr.png" alt="Original" class="preview-img original-img" id="originalImg">
+          <div class="upload-overlay"><span>Click to upload</span></div>
+        </div>
+        <span class="image-label">Original</span>
+        <span class="image-hint">Click to upload your image</span>
+      </div>
+      <div class="arrow">→</div>
+      <div class="image-box">
+        <div class="image-container" id="downloadContainer">
+          <img src="demo.png" alt="Glow" class="preview-img" id="hdrImg">
+          <div class="download-overlay" id="downloadOverlay"><span>Click to download</span></div>
+        </div>
+        <span class="image-label">Glow</span>
+        <span class="hdr-hint">Click to download</span>
+      </div>
+    </div>
+
+    <input type="file" id="fileInput" accept="image/png,image/jpeg,image/webp,image/heic,image/avif,image/gif,image/tiff,image/bmp">
+
+    <div class="controls">
+      <div class="control-group">
+        <label>
+          <span>Brightness Boost</span>
+          <span class="value-display" id="brightnessValue">1x</span>
+        </label>
+        <input type="range" id="brightnessSlider" min="0.5" max="3" step="0.1" value="1">
+      </div>
+
+      <div class="control-group">
+        <label>
+          <span>Saturation</span>
+          <span class="value-display" id="saturationValue">0.5x</span>
+        </label>
+        <input type="range" id="saturationSlider" min="0.5" max="2" step="0.1" value="0.5">
+      </div>
+    </div>
+
+    <div class="status" id="status"></div>
+
+    <div class="info-box hdr-not-supported" id="hdrInfo" style="display: none;">
+      You won't see the glow on this screen, but it will glow on iPhones, MacBooks, and modern monitors!
+    </div>
+
+    <div class="platforms-section">
+      <div class="platforms-title">Where will your avatar glow?</div>
+      <div class="platforms-grid">
+        <div class="platform-card">
+          <div class="platform-name">Instagram</div>
+          <div class="platform-status works">Full support</div>
+        </div>
+        <div class="platform-card">
+          <div class="platform-name">Threads</div>
+          <div class="platform-status works">Full support</div>
+        </div>
+        <div class="platform-card">
+          <div class="platform-name">X / Twitter</div>
+          <div class="platform-status works">Works great</div>
+        </div>
+        <div class="platform-card">
+          <div class="platform-name">Discord</div>
+          <div class="platform-status partial">As file share</div>
+        </div>
+        <div class="platform-card">
+          <div class="platform-name">TikTok</div>
+          <div class="platform-status partial">Videos only</div>
+        </div>
+        <div class="platform-card">
+          <div class="platform-name">Facebook</div>
+          <div class="platform-status works">Full support</div>
+        </div>
+      </div>
+      <p class="platforms-note">
+        The glow effect is visible on <strong>modern phones and laptops</strong> with bright screens —
+        iPhones, MacBooks, Samsung Galaxy, and most devices made after 2020.
+        On older screens, it will look like a normal image.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const fileInput = document.getElementById('fileInput');
+    const originalImg = document.getElementById('originalImg');
+    const hdrImg = document.getElementById('hdrImg');
+    const uploadContainer = document.getElementById('uploadContainer');
+    const downloadContainer = document.getElementById('downloadContainer');
+    const downloadOverlay = document.getElementById('downloadOverlay');
+    const status = document.getElementById('status');
+
+    const brightnessSlider = document.getElementById('brightnessSlider');
+    const saturationSlider = document.getElementById('saturationSlider');
+
+    let selectedFile = null;
+    let resultFilename = null;
+    let isConverting = false;
+
+    // Mobile elements
+    const mobileHdrImg = document.getElementById('mobileHdrImg');
+    const mobileOriginalImg = document.getElementById('mobileOriginalImg');
+    const mobileUploadBtn = document.getElementById('mobileUploadBtn');
+    const mobileDownloadBtn = document.getElementById('mobileDownloadBtn');
+
+    // Click original image to upload (desktop)
+    uploadContainer.addEventListener('click', () => fileInput.click());
+
+    // Mobile upload button
+    mobileUploadBtn.addEventListener('click', () => fileInput.click());
+
+    // Download function
+    function downloadResult() {
+      const a = document.createElement('a');
+      if (resultFilename) {
+        a.href = `/download/${resultFilename}`;
+        a.download = resultFilename;
+      } else {
+        // Download demo image
+        a.href = 'demo.png';
+        a.download = 'glow-avatar.png';
+      }
+      a.click();
+    }
+
+    // Click HDR image to download (desktop)
+    downloadContainer.addEventListener('click', downloadResult);
+
+    // Mobile download button
+    mobileDownloadBtn.addEventListener('click', downloadResult);
+
+    // File input change
+    fileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        handleFile(file);
+      }
+    });
+
+    function handleFile(file) {
+      selectedFile = file;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        originalImg.src = e.target.result;
+        mobileOriginalImg.src = e.target.result;
+        // Auto-convert when file is selected
+        convert();
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // Sliders - auto-reconvert on change
+    brightnessSlider.addEventListener('input', (e) => {
+      document.getElementById('brightnessValue').textContent = e.target.value + 'x';
+    });
+
+    brightnessSlider.addEventListener('change', () => {
+      convert();
+    });
+
+    saturationSlider.addEventListener('input', (e) => {
+      document.getElementById('saturationValue').textContent = e.target.value + 'x';
+    });
+
+    saturationSlider.addEventListener('change', () => {
+      convert();
+    });
+
+    async function convert() {
+      if (isConverting) return;
+
+      isConverting = true;
+      status.className = 'status active loading';
+      status.innerHTML = '<span class="spinner"></span>Converting...';
+
+      const formData = new FormData();
+      if (selectedFile) {
+        formData.append('image', selectedFile);
+      } else {
+        // Use demo image
+        const demoResponse = await fetch('demo-sdr.png');
+        const demoBlob = await demoResponse.blob();
+        formData.append('image', demoBlob, 'demo.png');
+      }
+      formData.append('brightness', brightnessSlider.value);
+      formData.append('saturation', saturationSlider.value);
+
+      try {
+        const response = await fetch('/convert', {
+          method: 'POST',
+          body: formData
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          status.className = 'status';
+          status.classList.remove('active');
+
+          resultFilename = result.filename;
+          hdrImg.src = result.url + '?t=' + Date.now();
+          mobileHdrImg.src = result.url + '?t=' + Date.now();
+
+          // Enable download
+          downloadOverlay.classList.remove('disabled');
+        } else {
+          throw new Error(result.error);
+        }
+      } catch (error) {
+        status.className = 'status active error';
+        status.textContent = 'Error: ' + error.message;
+      }
+
+      isConverting = false;
+    }
+
+    // HDR Detection - only show notice for non-HDR displays
+    function detectHDR() {
+      const supportsHDR = window.matchMedia('(dynamic-range: high)').matches;
+      const hdrInfo = document.getElementById('hdrInfo');
+      hdrInfo.style.display = supportsHDR ? 'none' : 'block';
+    }
+
+    detectHDR();
+    window.matchMedia('(dynamic-range: high)').addEventListener('change', detectHDR);
+
+    // Fluorescent lamp flicker effect on page load
+    function fluorescentFlicker() {
+      // Elements to flicker (HDR images that will "turn on")
+      const hdrElements = [hdrImg, mobileHdrImg];
+      const originalElements = [originalImg, mobileOriginalImg];
+
+      // Start with original visible (lamp off)
+      hdrElements.forEach(el => el.style.opacity = '0');
+
+      // For desktop: show original, hide HDR initially
+      if (window.innerWidth > 520) {
+        hdrImg.style.opacity = '0';
+        hdrImg.style.transition = 'none';
+      }
+
+      // For mobile: the HDR is the main image, original is overlay
+      // We'll flip it: show original first, then flicker to HDR
+      const mobileContainer = document.querySelector('.mobile-image-container');
+      if (mobileContainer && window.innerWidth <= 520) {
+        mobileOriginalImg.style.opacity = '1';
+        mobileHdrImg.style.opacity = '0';
+        mobileOriginalImg.style.transition = 'none';
+        mobileHdrImg.style.transition = 'none';
+      }
+
+      // Flicker sequence - mimics fluorescent lamp startup
+      // Quick flash, off, longer flash, off, flicker, then steady on
+      const flickerSequence = [
+        { on: true, duration: 80 },    // Quick flash
+        { on: false, duration: 150 },  // Off
+        { on: true, duration: 120 },   // Slightly longer flash
+        { on: false, duration: 200 },  // Off
+        { on: true, duration: 60 },    // Quick flicker
+        { on: false, duration: 80 },   // Brief off
+        { on: true, duration: 100 },   // Another flash
+        { on: false, duration: 60 },   // Very brief off
+        { on: true, duration: 50 },    // Rapid flicker
+        { on: false, duration: 40 },
+        { on: true, duration: 40 },
+        { on: false, duration: 30 },
+        { on: true, duration: 0 },     // Finally steady on
+      ];
+
+      let delay = 300; // Initial delay before starting
+
+      flickerSequence.forEach((step, index) => {
+        setTimeout(() => {
+          if (window.innerWidth > 520) {
+            // Desktop: toggle HDR image opacity
+            hdrImg.style.opacity = step.on ? '1' : '0';
+          } else {
+            // Mobile: toggle between showing original overlay and HDR
+            mobileHdrImg.style.opacity = step.on ? '1' : '0';
+            mobileOriginalImg.style.opacity = step.on ? '0' : '1';
+          }
+        }, delay);
+        delay += step.duration;
+      });
+
+      // After flicker completes, restore normal transitions
+      setTimeout(() => {
+        hdrImg.style.transition = '';
+        mobileHdrImg.style.transition = '';
+        mobileOriginalImg.style.transition = '';
+      }, delay + 100);
+    }
+
+    // Run flicker effect when page loads
+    window.addEventListener('load', fluorescentFlicker);
+  </script>
+</body>
+</html>

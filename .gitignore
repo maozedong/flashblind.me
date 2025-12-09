@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Output directories
+output/
+uploads/
+
+# IDE
+.idea/
+.vscode/
+
+# Playwright MCP
+.playwright-mcp/
+
+# Test/temp files
+*.log
+.DS_Store
+
+# Temporary generated files
+hdr-*.png
+test-*.png
+
+# Unused source images (keeping only demo.png and demo-sdr.png)
+Gemini_Generated_Image_*.png
+QbPcvO4h_400x400.png
+slim-woman-highwaisted-bikini-*.avif
+demo-hdr.avif
+demo.svg
+demo-original.jpg
+demo-original.png
