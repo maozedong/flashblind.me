@@ -156,6 +156,10 @@ Requires `pako` library for zlib compression (loaded from CDN).
 
 Built with frustration, determination, and lots of PNG specification reading.
 
+**Inspiration:**
+- [HDR Emoji](https://sharpletters.net/2025/04/16/hdr-emoji/) - The article that explained the HDR PNG technique
+- [Anthony Morris's tweet](https://x.com/amorriscode/status/1998257199043514684) - Sparked the idea to build a browser-native tool
+
 The HDR glow effect is achieved using the Rec.2020 PQ color profile, which is part of the ITU-R BT.2100 standard for HDR video.
 
 ## License
