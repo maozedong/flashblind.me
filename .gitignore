@@ -12,5 +12,8 @@
 # Node
 node_modules/
 
+# Build output
+dist/
+
 # Test files
 *.wasm

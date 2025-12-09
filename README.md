@@ -97,14 +97,12 @@ The result? HDR images that glow on Twitter, Instagram, Threads, Facebook, and e
 
 ### Cloudflare Pages (Recommended)
 
-This is a static site - no build step required!
-
 1. Go to [Cloudflare Pages](https://pages.cloudflare.com/)
 2. Click **Create a project** → **Connect to Git**
 3. Select this repository (`maozedong/hdr-glow`)
 4. Configure build settings:
-   - **Build command**: `exit 0` (no build needed)
-   - **Build output directory**: `/` (root)
+   - **Build command**: `npm run build`
+   - **Build output directory**: `dist`
 5. Click **Save and Deploy**
 
 Your site will be live at `hdr-glow.pages.dev` within minutes!
