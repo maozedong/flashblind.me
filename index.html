@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="dark">
   <title>Glow Avatar Generator</title>
+  <link rel="icon" type="image/png" href="favicon.png">
   <style>
     * {
       box-sizing: border-box;
@@ -31,6 +32,14 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
       text-align: center;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    h1.revealed {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .subtitle {
@@ -39,6 +48,14 @@
       text-align: center;
       max-width: 500px;
       padding: 0 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s;
+    }
+
+    .subtitle.revealed {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .container {
@@ -52,6 +69,35 @@
 
     #fileInput {
       display: none;
+    }
+
+    /* Elements hidden during lamp flicker, revealed after */
+    .controls,
+    .mobile-buttons,
+    .mobile-hint,
+    .image-label,
+    .image-hint,
+    .hdr-hint,
+    .upload-overlay,
+    .download-overlay,
+    .status,
+    .info-box,
+    .platforms-section {
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    .controls.revealed,
+    .mobile-buttons.revealed,
+    .mobile-hint.revealed,
+    .image-label.revealed,
+    .image-hint.revealed,
+    .hdr-hint.revealed,
+    .upload-overlay.revealed,
+    .download-overlay.revealed,
+    .info-box.revealed,
+    .platforms-section.revealed {
+      opacity: 1;
     }
 
     .controls {
@@ -374,9 +420,12 @@
         transition: opacity 0.3s ease;
       }
 
-      .mobile-image-container:hover .mobile-original-img,
-      .mobile-image-container:active .mobile-original-img {
+      .mobile-image-container.showing-original .mobile-original-img {
         opacity: 1;
+      }
+
+      .mobile-image-container.showing-original .mobile-main-img {
+        opacity: 0;
       }
 
       .mobile-hint {
@@ -488,8 +537,8 @@
   </style>
 </head>
 <body>
-  <h1>Glow Avatar Generator</h1>
-  <p class="subtitle">Make your avatar glow brighter than everything else</p>
+  <h1>Stand Out From The Feed</h1>
+  <p class="subtitle">Turn your avatar into an eye-catching HDR glow that pops on every scroll</p>
 
   <div class="container">
     <!-- Mobile view: single image with hover to see original -->
@@ -789,16 +838,65 @@
         delay += step.duration;
       });
 
-      // After flicker completes, restore normal transitions
+      // After flicker completes, restore normal transitions and reveal page
       setTimeout(() => {
         hdrImg.style.transition = '';
         mobileHdrImg.style.transition = '';
         mobileOriginalImg.style.transition = '';
+
+        // Reveal all page elements (the lamp has lit up the room)
+        document.querySelector('h1').classList.add('revealed');
+        document.querySelector('.subtitle').classList.add('revealed');
+
+        // Reveal all hidden elements
+        document.querySelectorAll('.controls, .mobile-buttons, .mobile-hint, .image-label, .image-hint, .hdr-hint, .upload-overlay, .download-overlay, .info-box, .platforms-section').forEach(el => {
+          el.classList.add('revealed');
+        });
       }, delay + 100);
     }
 
     // Run flicker effect when page loads
     window.addEventListener('load', fluorescentFlicker);
+
+    // Mobile hold-to-see-original functionality
+    const mobileImageContainer = document.querySelector('.mobile-image-container');
+    let holdTimer = null;
+    let isHolding = false;
+
+    function showOriginal() {
+      isHolding = true;
+      mobileImageContainer.classList.add('showing-original');
+    }
+
+    function showHDR() {
+      isHolding = false;
+      holdTimer = null;
+      mobileImageContainer.classList.remove('showing-original');
+    }
+
+    // Touch events - use a short delay to distinguish tap from hold
+    mobileImageContainer.addEventListener('touchstart', () => {
+      holdTimer = setTimeout(showOriginal, 100);
+    });
+
+    mobileImageContainer.addEventListener('touchend', () => {
+      if (holdTimer) clearTimeout(holdTimer);
+      showHDR();
+    });
+
+    mobileImageContainer.addEventListener('touchcancel', () => {
+      if (holdTimer) clearTimeout(holdTimer);
+      showHDR();
+    });
+
+    mobileImageContainer.addEventListener('touchmove', () => {
+      // User is scrolling, cancel the hold
+      if (holdTimer) {
+        clearTimeout(holdTimer);
+        holdTimer = null;
+      }
+      if (isHolding) showHDR();
+    });
   </script>
 </body>
 </html>
