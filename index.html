@@ -32,14 +32,6 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
       text-align: center;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    h1.revealed {
-      opacity: 1;
-      transform: translateY(0);
     }
 
     .subtitle {
@@ -48,14 +40,6 @@
       text-align: center;
       max-width: 500px;
       padding: 0 20px;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s;
-    }
-
-    .subtitle.revealed {
-      opacity: 1;
-      transform: translateY(0);
     }
 
     .container {
@@ -71,33 +55,45 @@
       display: none;
     }
 
-    /* Elements hidden during lamp flicker, revealed after */
-    .controls,
-    .mobile-buttons,
-    .mobile-hint,
-    .image-label,
-    .image-hint,
-    .hdr-hint,
-    .upload-overlay,
-    .download-overlay,
-    .status,
-    .info-box,
-    .platforms-section {
-      opacity: 0;
-      transition: opacity 0.6s ease;
+    /* Dark overlay - everything starts in darkness */
+    .darkness-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 999;
+      background: #000;
+      opacity: 0.85;
     }
 
-    .controls.revealed,
-    .mobile-buttons.revealed,
-    .mobile-hint.revealed,
-    .image-label.revealed,
-    .image-hint.revealed,
-    .hdr-hint.revealed,
-    .upload-overlay.revealed,
-    .download-overlay.revealed,
-    .info-box.revealed,
-    .platforms-section.revealed {
+    .darkness-overlay.lit {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    /* Light overlay for lamp flicker effect */
+    .lamp-light {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0;
+      --light-x: 50%;
+      --light-y: 35%;
+      background: radial-gradient(ellipse at var(--light-x) var(--light-y), rgba(255, 50, 255, 0.4) 0%, rgba(255, 100, 255, 0.25) 20%, rgba(200, 50, 200, 0.12) 45%, transparent 70%);
+    }
+
+    .lamp-light.on {
       opacity: 1;
+    }
+
+    .lamp-light.steady {
+      opacity: 0.6;
     }
 
     .controls {
@@ -537,6 +533,8 @@
   </style>
 </head>
 <body>
+  <div class="darkness-overlay" id="darknessOverlay"></div>
+  <div class="lamp-light" id="lampLight"></div>
   <h1>Stand Out From The Feed</h1>
   <p class="subtitle">Turn your avatar into an eye-catching HDR glow that pops on every scroll</p>
 
@@ -785,6 +783,21 @@
       const hdrElements = [hdrImg, mobileHdrImg];
       const originalElements = [originalImg, mobileOriginalImg];
 
+      // Light overlay elements
+      const lampLight = document.getElementById('lampLight');
+      const darknessOverlay = document.getElementById('darknessOverlay');
+
+      // Position light at the HDR image center
+      function updateLightPosition() {
+        const targetImg = window.innerWidth > 520 ? hdrImg : mobileHdrImg;
+        const rect = targetImg.getBoundingClientRect();
+        const centerX = (rect.left + rect.width / 2) / window.innerWidth * 100;
+        const centerY = (rect.top + rect.height / 2) / window.innerHeight * 100;
+        lampLight.style.setProperty('--light-x', centerX + '%');
+        lampLight.style.setProperty('--light-y', centerY + '%');
+      }
+      updateLightPosition();
+
       // Start with original visible (lamp off)
       hdrElements.forEach(el => el.style.opacity = '0');
 
@@ -805,21 +818,14 @@
       }
 
       // Flicker sequence - mimics fluorescent lamp startup
-      // Quick flash, off, longer flash, off, flicker, then steady on
       const flickerSequence = [
-        { on: true, duration: 80 },    // Quick flash
-        { on: false, duration: 150 },  // Off
-        { on: true, duration: 120 },   // Slightly longer flash
-        { on: false, duration: 200 },  // Off
-        { on: true, duration: 60 },    // Quick flicker
-        { on: false, duration: 80 },   // Brief off
-        { on: true, duration: 100 },   // Another flash
-        { on: false, duration: 60 },   // Very brief off
-        { on: true, duration: 50 },    // Rapid flicker
-        { on: false, duration: 40 },
-        { on: true, duration: 40 },
-        { on: false, duration: 30 },
-        { on: true, duration: 0 },     // Finally steady on
+        { on: true, duration: 60 },    // Quick flash
+        { on: false, duration: 100 },  // Off
+        { on: true, duration: 80 },    // Longer flash
+        { on: false, duration: 80 },   // Off
+        { on: true, duration: 50 },    // Quick flicker
+        { on: false, duration: 50 },   // Brief off
+        { on: true, duration: 0 },     // Steady on
       ];
 
       let delay = 300; // Initial delay before starting
@@ -834,11 +840,14 @@
             mobileHdrImg.style.opacity = step.on ? '1' : '0';
             mobileOriginalImg.style.opacity = step.on ? '0' : '1';
           }
+          // Toggle lamp light overlay and darkness
+          lampLight.classList.toggle('on', step.on);
+          darknessOverlay.classList.toggle('lit', step.on);
         }, delay);
         delay += step.duration;
       });
 
-      // After flicker completes, restore normal transitions and reveal page
+      // After flicker completes, restore normal transitions
       setTimeout(() => {
         hdrImg.style.transition = '';
         mobileHdrImg.style.transition = '';
@@ -848,14 +857,11 @@
         mobileHdrImg.style.opacity = '';
         mobileOriginalImg.style.opacity = '';
 
-        // Reveal all page elements (the lamp has lit up the room)
-        document.querySelector('h1').classList.add('revealed');
-        document.querySelector('.subtitle').classList.add('revealed');
-
-        // Reveal all hidden elements
-        document.querySelectorAll('.controls, .mobile-buttons, .mobile-hint, .image-label, .image-hint, .hdr-hint, .upload-overlay, .download-overlay, .info-box, .platforms-section').forEach(el => {
-          el.classList.add('revealed');
-        });
+        // Switch from flicker to steady glow
+        lampLight.classList.remove('on');
+        lampLight.classList.add('steady');
+        // Keep darkness lifted
+        darknessOverlay.classList.add('lit');
       }, delay + 100);
     }
 
