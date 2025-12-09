@@ -93,7 +93,23 @@ The result? HDR images that glow on Twitter, Instagram, Threads, Facebook, and e
 8. **Dithering**: Apply Floyd-Steinberg for smooth gradients
 9. **PNG Encoding**: Create indexed PNG with Rec.2020 PQ ICC profile
 
-## Local Development
+## Deployment
+
+### Cloudflare Pages (Recommended)
+
+This is a static site - no build step required!
+
+1. Go to [Cloudflare Pages](https://pages.cloudflare.com/)
+2. Click **Create a project** → **Connect to Git**
+3. Select this repository (`maozedong/hdr-glow`)
+4. Configure build settings:
+   - **Build command**: `exit 0` (no build needed)
+   - **Build output directory**: `/` (root)
+5. Click **Save and Deploy**
+
+Your site will be live at `hdr-glow.pages.dev` within minutes!
+
+### Local Development
 
 ```bash
 # Clone the repo
