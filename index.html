@@ -4,8 +4,84 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="dark">
-  <title>Glow Avatar Generator</title>
+
+  <!-- Primary Meta Tags -->
+  <title>HDR Glow Avatar Generator - Create Glowing Profile Pictures for Instagram, Twitter & Social Media</title>
+  <meta name="title" content="HDR Glow Avatar Generator - Create Glowing Profile Pictures for Instagram, Twitter & Social Media">
+  <meta name="description" content="Free online tool to convert your photos into eye-catching HDR glow avatars. Make your profile picture stand out on Instagram, Twitter, Threads, and TikTok with vibrant glowing effects visible on iPhones, MacBooks, and HDR displays.">
+  <meta name="keywords" content="HDR avatar, glowing profile picture, Instagram avatar, Twitter profile picture, HDR glow effect, social media avatar, profile picture maker, HDR image converter, glow effect generator">
+  <meta name="author" content="Ostap Nagovitsyn">
+  <meta name="robots" content="index, follow">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://hdr-glow.ostapnagovitsyn.workers.dev/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://hdr-glow.ostapnagovitsyn.workers.dev/">
+  <meta property="og:title" content="HDR Glow Avatar Generator - Make Your Profile Picture Stand Out">
+  <meta property="og:description" content="Free tool to create eye-catching HDR glow avatars for social media. Works on Instagram, Twitter, Threads, Facebook & more.">
+  <meta property="og:image" content="https://hdr-glow.ostapnagovitsyn.workers.dev/demo.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="1200">
+  <meta property="og:image:alt" content="Example of an HDR glowing avatar">
+  <meta property="og:site_name" content="HDR Glow Avatar Generator">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://hdr-glow.ostapnagovitsyn.workers.dev/">
+  <meta name="twitter:title" content="HDR Glow Avatar Generator - Make Your Profile Picture Stand Out">
+  <meta name="twitter:description" content="Free tool to create eye-catching HDR glow avatars for social media. Works on Instagram, Twitter, Threads, Facebook & more.">
+  <meta name="twitter:image" content="https://hdr-glow.ostapnagovitsyn.workers.dev/demo.png">
+  <meta name="twitter:image:alt" content="Example of an HDR glowing avatar">
+
+  <!-- Additional SEO -->
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="apple-mobile-web-app-title" content="HDR Glow">
+  <meta name="application-name" content="HDR Glow Avatar Generator">
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preconnect" href="https://cdn.buymeacoffee.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  <link rel="dns-prefetch" href="https://cdn.buymeacoffee.com">
+
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "HDR Glow Avatar Generator",
+    "url": "https://hdr-glow.ostapnagovitsyn.workers.dev/",
+    "description": "Free online tool to convert photos into eye-catching HDR glow avatars for social media profiles.",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript. Works best on modern browsers.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "Convert images to HDR glow effect",
+      "Adjustable brightness and saturation",
+      "Works with Instagram, Twitter, Threads, Facebook",
+      "No account required",
+      "Privacy-friendly - all processing done in browser"
+    ],
+    "screenshot": "https://hdr-glow.ostapnagovitsyn.workers.dev/demo.png",
+    "author": {
+      "@type": "Person",
+      "name": "Ostap Nagovitsyn",
+      "url": "https://github.com/maozedong"
+    }
+  }
+  </script>
   <style>
     * {
       box-sizing: border-box;
@@ -24,6 +100,10 @@
       padding: 40px 20px;
     }
 
+    header {
+      text-align: center;
+    }
+
     h1 {
       font-size: 2rem;
       margin-bottom: 8px;
@@ -32,6 +112,10 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
       text-align: center;
+    }
+
+    h2, h3 {
+      font-weight: 600;
     }
 
     .subtitle {
@@ -215,6 +299,9 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
       gap: 12px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
     }
 
     .platform-card {
@@ -228,12 +315,13 @@
       font-size: 16px;
       font-weight: 600;
       color: #e5e5e5;
-      margin-bottom: 6px;
+      margin: 0 0 6px 0;
     }
 
     .platform-status {
       font-size: 13px;
       color: #888;
+      margin: 0;
     }
 
     .platform-status.works {
@@ -586,20 +674,23 @@
   </style>
 </head>
 <body>
-  <div class="darkness-overlay" id="darknessOverlay"></div>
-  <div class="lamp-light" id="lampLight"></div>
-  <h1>Stand Out From The Feed</h1>
-  <p class="subtitle">Turn your avatar into an eye-catching HDR glow that pops on every scroll</p>
+  <div class="darkness-overlay" id="darknessOverlay" aria-hidden="true"></div>
+  <div class="lamp-light" id="lampLight" aria-hidden="true"></div>
 
-  <div class="container">
+  <header>
+    <h1>Stand Out From The Feed</h1>
+    <p class="subtitle">Turn your avatar into an eye-catching HDR glow that pops on every scroll</p>
+  </header>
+
+  <main class="container">
     <!-- Mobile view: single image with hover to see original -->
-    <div class="mobile-view">
-      <div class="mobile-image-container">
-        <img src="demo.png" alt="Glow" class="mobile-main-img" id="mobileHdrImg">
-        <img src="demo-sdr.png" alt="Original" class="mobile-original-img" id="mobileOriginalImg">
+    <section class="mobile-view" aria-label="HDR glow preview">
+      <div class="mobile-image-container" role="img" aria-label="HDR glow avatar comparison - tap to toggle between original and glowing version">
+        <img src="demo.png" alt="Example avatar with HDR glow effect applied - vibrant glowing colors visible on HDR displays" class="mobile-main-img" id="mobileHdrImg" width="220" height="220">
+        <img src="demo-sdr.png" alt="Original avatar before HDR glow conversion" class="mobile-original-img" id="mobileOriginalImg" width="220" height="220">
       </div>
       <span class="mobile-hint">Tap to compare</span>
-    </div>
+    </section>
 
     <div class="mobile-buttons">
       <button class="mobile-btn mobile-btn-upload" id="mobileUploadBtn">Upload</button>
@@ -607,108 +698,108 @@
     </div>
 
     <!-- Desktop view: side by side comparison -->
-    <div class="comparison">
+    <section class="comparison" aria-label="Before and after HDR glow comparison">
       <div class="image-box">
-        <div class="image-container" id="uploadContainer">
-          <img src="demo-sdr.png" alt="Original" class="preview-img original-img" id="originalImg">
-          <div class="upload-overlay"><span>Click to upload</span></div>
+        <div class="image-container" id="uploadContainer" role="button" tabindex="0" aria-label="Upload your image for HDR glow conversion">
+          <img src="demo-sdr.png" alt="Original avatar before HDR glow conversion - click to upload your own image" class="preview-img original-img" id="originalImg" width="200" height="200">
+          <div class="upload-overlay" aria-hidden="true"><span>Click to upload</span></div>
         </div>
         <span class="image-label">Original</span>
         <span class="image-hint">Click to upload your image</span>
       </div>
-      <div class="arrow">→</div>
+      <div class="arrow" aria-hidden="true">→</div>
       <div class="image-box">
-        <div class="image-container" id="downloadContainer">
-          <img src="demo.png" alt="Glow" class="preview-img" id="hdrImg">
-          <div class="download-overlay" id="downloadOverlay"><span>Click to download</span></div>
+        <div class="image-container" id="downloadContainer" role="button" tabindex="0" aria-label="Download your HDR glow avatar">
+          <img src="demo.png" alt="Avatar with HDR glow effect - vibrant glowing colors that pop on HDR screens" class="preview-img" id="hdrImg" width="200" height="200">
+          <div class="download-overlay" id="downloadOverlay" aria-hidden="true"><span>Click to download</span></div>
         </div>
         <span class="image-label">Glow</span>
         <span class="hdr-hint">Click to download</span>
       </div>
-    </div>
+    </section>
 
-    <input type="file" id="fileInput" accept="image/png,image/jpeg,image/webp,image/heic,image/avif,image/gif,image/tiff,image/bmp">
+    <input type="file" id="fileInput" accept="image/png,image/jpeg,image/webp,image/heic,image/avif,image/gif,image/tiff,image/bmp" aria-label="Upload image file for HDR glow conversion">
 
-    <div class="controls">
+    <section class="controls" aria-label="HDR glow adjustment settings">
       <div class="control-group">
-        <label>
+        <label for="brightnessSlider">
           <span>Brightness Boost</span>
           <span class="value-display" id="brightnessValue">1x</span>
         </label>
-        <input type="range" id="brightnessSlider" min="0.5" max="3" step="0.1" value="1">
+        <input type="range" id="brightnessSlider" min="0.5" max="3" step="0.1" value="1" aria-describedby="brightnessValue">
       </div>
 
       <div class="control-group">
-        <label>
+        <label for="saturationSlider">
           <span>Saturation</span>
           <span class="value-display" id="saturationValue">1x</span>
         </label>
-        <input type="range" id="saturationSlider" min="0.5" max="2" step="0.1" value="1">
+        <input type="range" id="saturationSlider" min="0.5" max="2" step="0.1" value="1" aria-describedby="saturationValue">
       </div>
 
       <div class="control-group">
-        <label>
+        <label for="qualitySlider">
           <span>Quality</span>
           <span class="value-display" id="qualityValue">100%</span>
         </label>
-        <input type="range" id="qualitySlider" min="25" max="100" step="5" value="100">
+        <input type="range" id="qualitySlider" min="25" max="100" step="5" value="100" aria-describedby="qualityValue">
       </div>
-    </div>
+    </section>
 
-    <div class="status" id="status"></div>
+    <div class="status" id="status" role="status" aria-live="polite"></div>
 
-    <div class="info-box hdr-not-supported" id="hdrInfo" style="display: none;">
+    <aside class="info-box hdr-not-supported" id="hdrInfo" style="display: none;">
       You won't see the glow on this screen, but it will glow on iPhones, MacBooks, and modern monitors!
-    </div>
+    </aside>
 
-    <div class="platforms-section">
-      <div class="platforms-title">Where will your avatar glow?</div>
-      <div class="platforms-grid">
-        <div class="platform-card">
-          <div class="platform-name">Instagram</div>
-          <div class="platform-status works">Full support</div>
-        </div>
-        <div class="platform-card">
-          <div class="platform-name">Threads</div>
-          <div class="platform-status works">Full support</div>
-        </div>
-        <div class="platform-card">
-          <div class="platform-name">X / Twitter</div>
-          <div class="platform-status works">Works great</div>
-        </div>
-        <div class="platform-card">
-          <div class="platform-name">Discord</div>
-          <div class="platform-status partial">As file share</div>
-        </div>
-        <div class="platform-card">
-          <div class="platform-name">TikTok</div>
-          <div class="platform-status partial">Videos only</div>
-        </div>
-        <div class="platform-card">
-          <div class="platform-name">Facebook</div>
-          <div class="platform-status works">Full support</div>
-        </div>
-      </div>
+    <section class="platforms-section" aria-labelledby="platforms-heading">
+      <h2 class="platforms-title" id="platforms-heading">Where will your avatar glow?</h2>
+      <ul class="platforms-grid" role="list">
+        <li class="platform-card">
+          <h3 class="platform-name">Instagram</h3>
+          <p class="platform-status works">Full support</p>
+        </li>
+        <li class="platform-card">
+          <h3 class="platform-name">Threads</h3>
+          <p class="platform-status works">Full support</p>
+        </li>
+        <li class="platform-card">
+          <h3 class="platform-name">X / Twitter</h3>
+          <p class="platform-status works">Works great</p>
+        </li>
+        <li class="platform-card">
+          <h3 class="platform-name">Discord</h3>
+          <p class="platform-status partial">As file share</p>
+        </li>
+        <li class="platform-card">
+          <h3 class="platform-name">TikTok</h3>
+          <p class="platform-status partial">Videos only</p>
+        </li>
+        <li class="platform-card">
+          <h3 class="platform-name">Facebook</h3>
+          <p class="platform-status works">Full support</p>
+        </li>
+      </ul>
       <p class="platforms-note">
         The glow effect is visible on <strong>modern phones and laptops</strong> with bright screens —
         iPhones, MacBooks, Samsung Galaxy, and most devices made after 2020.
         On older screens, it will look like a normal image.
       </p>
-    </div>
+    </section>
 
-    <div class="footer-links">
-      <a href="https://github.com/maozedong/hdr-glow" target="_blank" rel="noopener" class="github-link">
-        <svg height="24" viewBox="0 0 16 16" width="24" fill="currentColor">
+    <footer class="footer-links">
+      <a href="https://github.com/maozedong/hdr-glow" target="_blank" rel="noopener noreferrer" class="github-link" aria-label="View HDR Glow source code on GitHub">
+        <svg height="24" viewBox="0 0 16 16" width="24" fill="currentColor" aria-hidden="true">
           <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
         </svg>
         <span>GitHub</span>
       </a>
-      <a href="https://buymeacoffee.com/ostapnagovitsyn" target="_blank" rel="noopener" class="bmc-button">
-        <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="36">
+      <a href="https://buymeacoffee.com/ostapnagovitsyn" target="_blank" rel="noopener noreferrer" class="bmc-button" aria-label="Support the developer - Buy Me A Coffee">
+        <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="36" width="162" loading="lazy">
       </a>
-    </div>
+    </footer>
 
-  </div>
+  </main>
 
   <script src="https://cdn.jsdelivr.net/npm/pako@2.1.0/dist/pako.min.js"></script>
   <script src="hdr-converter.js"></script>
