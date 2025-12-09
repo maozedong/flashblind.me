@@ -589,6 +589,7 @@
     </div>
   </div>
 
+  <script src="hdr-converter.js"></script>
   <script>
     const fileInput = document.getElementById('fileInput');
     const originalImg = document.getElementById('originalImg');
@@ -602,7 +603,7 @@
     const saturationSlider = document.getElementById('saturationSlider');
 
     let selectedFile = null;
-    let resultFilename = null;
+    let resultBlob = null;  // Stores the converted image blob for download
     let isConverting = false;
 
     // Mobile elements
@@ -620,9 +621,9 @@
     // Download function
     function downloadResult() {
       const a = document.createElement('a');
-      if (resultFilename) {
-        a.href = `/download/${resultFilename}`;
-        a.download = resultFilename;
+      if (resultBlob) {
+        a.href = URL.createObjectURL(resultBlob);
+        a.download = 'glow-avatar.png';
       } else {
         // Download demo image
         a.href = 'demo.png';
@@ -681,42 +682,39 @@
       status.className = 'status active loading';
       status.innerHTML = '<span class="spinner"></span>Converting...';
 
-      const formData = new FormData();
-      if (selectedFile) {
-        formData.append('image', selectedFile);
-      } else {
-        // Use demo image
-        const demoResponse = await fetch('demo-sdr.png');
-        const demoBlob = await demoResponse.blob();
-        formData.append('image', demoBlob, 'demo.png');
-      }
-      formData.append('brightness', brightnessSlider.value);
-      formData.append('saturation', saturationSlider.value);
-
       try {
-        const response = await fetch('/convert', {
-          method: 'POST',
-          body: formData
+        // Determine image source
+        let imageSource;
+        if (selectedFile) {
+          imageSource = await new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onload = (e) => resolve(e.target.result);
+            reader.readAsDataURL(selectedFile);
+          });
+        } else {
+          // Use demo image
+          imageSource = 'demo-sdr.png';
+        }
+
+        // Convert using client-side HDR converter
+        const result = await window.HDRConverter.convert(imageSource, {
+          brightness: parseFloat(brightnessSlider.value),
+          saturation: parseFloat(saturationSlider.value)
         });
 
-        const result = await response.json();
+        status.className = 'status';
+        status.classList.remove('active');
 
-        if (result.success) {
-          status.className = 'status';
-          status.classList.remove('active');
+        resultBlob = result.blob;
+        hdrImg.src = result.url;
+        mobileHdrImg.src = result.url;
 
-          resultFilename = result.filename;
-          hdrImg.src = result.url + '?t=' + Date.now();
-          mobileHdrImg.src = result.url + '?t=' + Date.now();
-
-          // Enable download
-          downloadOverlay.classList.remove('disabled');
-        } else {
-          throw new Error(result.error);
-        }
+        // Enable download
+        downloadOverlay.classList.remove('disabled');
       } catch (error) {
         status.className = 'status active error';
         status.textContent = 'Error: ' + error.message;
+        console.error('Conversion error:', error);
       }
 
       isConverting = false;
