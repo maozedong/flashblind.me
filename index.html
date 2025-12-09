@@ -875,6 +875,9 @@
     mobileImageContainer.addEventListener('click', () => {
       showingOriginal = !showingOriginal;
       mobileImageContainer.classList.toggle('showing-original', showingOriginal);
+      // Turn off lamp light when showing original (lamp is "off")
+      const lampLight = document.getElementById('lampLight');
+      lampLight.classList.toggle('steady', !showingOriginal);
     });
   </script>
 </body>
