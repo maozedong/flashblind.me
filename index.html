@@ -547,7 +547,7 @@
         <img src="demo.png" alt="Glow" class="mobile-main-img" id="mobileHdrImg">
         <img src="demo-sdr.png" alt="Original" class="mobile-original-img" id="mobileOriginalImg">
       </div>
-      <span class="mobile-hint">Hold to see original</span>
+      <span class="mobile-hint">Tap to compare</span>
     </div>
 
     <div class="mobile-buttons">
@@ -844,6 +844,10 @@
         mobileHdrImg.style.transition = '';
         mobileOriginalImg.style.transition = '';
 
+        // Clear inline opacity styles so CSS can control them for tap-to-toggle
+        mobileHdrImg.style.opacity = '';
+        mobileOriginalImg.style.opacity = '';
+
         // Reveal all page elements (the lamp has lit up the room)
         document.querySelector('h1').classList.add('revealed');
         document.querySelector('.subtitle').classList.add('revealed');
@@ -858,44 +862,13 @@
     // Run flicker effect when page loads
     window.addEventListener('load', fluorescentFlicker);
 
-    // Mobile hold-to-see-original functionality
+    // Mobile tap-to-toggle functionality
     const mobileImageContainer = document.querySelector('.mobile-image-container');
-    let holdTimer = null;
-    let isHolding = false;
+    let showingOriginal = false;
 
-    function showOriginal() {
-      isHolding = true;
-      mobileImageContainer.classList.add('showing-original');
-    }
-
-    function showHDR() {
-      isHolding = false;
-      holdTimer = null;
-      mobileImageContainer.classList.remove('showing-original');
-    }
-
-    // Touch events - use a short delay to distinguish tap from hold
-    mobileImageContainer.addEventListener('touchstart', () => {
-      holdTimer = setTimeout(showOriginal, 100);
-    });
-
-    mobileImageContainer.addEventListener('touchend', () => {
-      if (holdTimer) clearTimeout(holdTimer);
-      showHDR();
-    });
-
-    mobileImageContainer.addEventListener('touchcancel', () => {
-      if (holdTimer) clearTimeout(holdTimer);
-      showHDR();
-    });
-
-    mobileImageContainer.addEventListener('touchmove', () => {
-      // User is scrolling, cancel the hold
-      if (holdTimer) {
-        clearTimeout(holdTimer);
-        holdTimer = null;
-      }
-      if (isHolding) showHDR();
+    mobileImageContainer.addEventListener('click', () => {
+      showingOriginal = !showingOriginal;
+      mobileImageContainer.classList.toggle('showing-original', showingOriginal);
     });
   </script>
 </body>
