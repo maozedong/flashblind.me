@@ -1,4 +1,4 @@
-# HDR Glow Avatar Generator
+# Flashblind
 
 **Turn your avatar into an eye-catching HDR glow that pops on every scroll.**
 
@@ -99,20 +99,20 @@ The result? HDR images that glow on Twitter, Instagram, Threads, Facebook, and e
 
 1. Go to [Cloudflare Pages](https://pages.cloudflare.com/)
 2. Click **Create a project** → **Connect to Git**
-3. Select this repository (`maozedong/hdr-glow`)
+3. Select this repository (`maozedong/flashblind.me`)
 4. Configure build settings:
    - **Build command**: `npm run build`
    - **Build output directory**: `dist`
 5. Click **Save and Deploy**
 
-Your site will be live at `hdr-glow.pages.dev` within minutes!
+Your site will be live at `flashblind.me` within minutes!
 
 ### Local Development
 
 ```bash
 # Clone the repo
-git clone https://github.com/maozedong/hdr-glow.git
-cd hdr-glow
+git clone https://github.com/maozedong/flashblind.me.git
+cd flashblind.me
 
 # Install dependencies
 npm install
