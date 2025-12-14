@@ -6,9 +6,9 @@
   <meta name="color-scheme" content="dark">
 
   <!-- Primary Meta Tags -->
-  <title>Flashblind - Create Glowing HDR Profile Pictures for Instagram, Twitter & Social Media</title>
-  <meta name="title" content="Flashblind - Create Glowing HDR Profile Pictures for Instagram, Twitter & Social Media">
-  <meta name="description" content="Free online tool to convert your photos into eye-catching HDR glow avatars. Make your profile picture stand out on Instagram, Twitter, Threads, and TikTok with vibrant glowing effects visible on iPhones, MacBooks, and HDR displays.">
+  <title>Flashblind: The Brightest Profile on the Timeline | HDR Avatar Generator</title>
+  <meta name="title" content="Flashblind: The Brightest Profile on the Timeline | HDR Avatar Generator">
+  <meta name="description" content="Unfair advantage for your avatar. Convert any image into HDR that actually emits light on iPhones and MacBooks. Your profile will outshine everyone else's.">
   <meta name="keywords" content="HDR avatar, glowing profile picture, Instagram avatar, Twitter profile picture, HDR glow effect, social media avatar, profile picture maker, HDR image converter, glow effect generator, flashblind">
   <meta name="author" content="Ostap Nagovitsyn">
   <meta name="robots" content="index, follow">
@@ -19,8 +19,8 @@
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://flashblind.me/">
-  <meta property="og:title" content="Flashblind - Make Your Profile Picture Stand Out">
-  <meta property="og:description" content="Free tool to create eye-catching HDR glow avatars for social media. Works on Instagram, Twitter, Threads, Facebook & more.">
+  <meta property="og:title" content="Flashblind: The Brightest Profile on the Timeline">
+  <meta property="og:description" content="Unfair advantage for your avatar. HDR that actually emits light. Your profile will outshine everyone else's.">
   <meta property="og:image" content="https://flashblind.me/demo.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="1200">
@@ -31,8 +31,8 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://flashblind.me/">
-  <meta name="twitter:title" content="Flashblind - Make Your Profile Picture Stand Out">
-  <meta name="twitter:description" content="Free tool to create eye-catching HDR glow avatars for social media. Works on Instagram, Twitter, Threads, Facebook & more.">
+  <meta name="twitter:title" content="Flashblind: The Brightest Profile on the Timeline">
+  <meta name="twitter:description" content="Unfair advantage for your avatar. HDR that actually emits light. Your profile will outshine everyone else's.">
   <meta name="twitter:image" content="https://flashblind.me/demo.png">
   <meta name="twitter:image:alt" content="Example of an HDR glowing avatar">
 
@@ -42,10 +42,15 @@
   <meta name="application-name" content="Flashblind">
 
   <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="preconnect" href="https://cdn.buymeacoffee.com" crossorigin>
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
   <link rel="dns-prefetch" href="https://cdn.buymeacoffee.com">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@600;700&display=swap" rel="stylesheet">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png">
@@ -82,7 +87,57 @@
     }
   }
   </script>
+  <!-- FAQ Schema for search discovery -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How to make Instagram profile picture glow?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use Flashblind to convert your image to HDR format. Upload the converted PNG to Instagram without applying any filters. The glow effect will be visible on iPhones, MacBooks, and other HDR-capable displays."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why are some Twitter avatars so bright?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Those avatars use HDR (High Dynamic Range) images that can display brightness levels beyond normal SDR images. On HDR-capable screens like modern iPhones and MacBooks, these images appear to actually glow and emit light."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Instagram support HDR photos?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, Instagram supports HDR photos when uploaded correctly. The key is to upload the image without applying any filters, as filters strip the HDR metadata. The HDR effect is visible on devices with HDR displays."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What devices can see HDR glowing avatars?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "HDR avatars are visible on devices with HDR displays including: iPhone X and newer, MacBook Pro (2018+), MacBook Air (M1+), iPad Pro, Samsung Galaxy S10+, and most flagship phones and monitors made after 2020."
+        }
+      }
+    ]
+  }
+  </script>
   <style>
+    :root {
+      --bg-core: #000000;
+      --bg-surface: #121212;
+      --accent-primary: #FFCC00;
+      --accent-secondary: #FF5500;
+      --text-main: #FFFFFF;
+      --text-muted: #888888;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -90,9 +145,9 @@
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #0a0a0a;
-      color: #e5e5e5;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg-core);
+      color: var(--text-main);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -105,9 +160,11 @@
     }
 
     h1 {
-      font-size: 2rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
       margin-bottom: 8px;
-      background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb);
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -115,11 +172,12 @@
     }
 
     h2, h3 {
+      font-family: 'Outfit', sans-serif;
       font-weight: 600;
     }
 
     .subtitle {
-      color: #888;
+      color: var(--text-muted);
       margin-bottom: 40px;
       text-align: center;
       max-width: 500px;
@@ -193,7 +251,7 @@
       display: flex;
       flex-direction: column;
       gap: 20px;
-      background: #151515;
+      background: var(--bg-surface);
       padding: 24px;
       border-radius: 16px;
       width: 100%;
@@ -207,7 +265,7 @@
 
     .control-group label {
       font-size: 14px;
-      color: #aaa;
+      color: var(--text-muted);
       display: flex;
       justify-content: space-between;
     }
@@ -228,14 +286,14 @@
       width: 18px;
       height: 18px;
       border-radius: 50%;
-      background: #feca57;
+      background: var(--accent-primary);
       cursor: pointer;
     }
 
     .value-display {
       min-width: 50px;
       text-align: right;
-      color: #feca57;
+      color: var(--accent-primary);
       font-weight: 600;
       font-size: 14px;
     }
@@ -252,9 +310,9 @@
     }
 
     .status.loading {
-      background: rgba(254, 202, 87, 0.1);
-      border: 1px solid rgba(254, 202, 87, 0.3);
-      color: #feca57;
+      background: rgba(255, 204, 0, 0.1);
+      border: 1px solid rgba(255, 204, 0, 0.3);
+      color: var(--accent-primary);
     }
 
     .status.error {
@@ -279,8 +337,165 @@
       color: #ffc800;
     }
 
+    /* Device Badge Styles */
+    .device-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .device-badge.hdr-ready {
+      background: rgba(74, 222, 128, 0.1);
+      border: 1px solid rgba(74, 222, 128, 0.3);
+      color: #4ade80;
+    }
+
+    .device-badge.hdr-legacy {
+      background: rgba(255, 200, 0, 0.1);
+      border: 1px solid rgba(255, 200, 0, 0.3);
+      color: #ffc800;
+    }
+
+    .device-badge .badge-icon {
+      font-size: 16px;
+    }
+
+    .device-badge .badge-label {
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* No-Filter Warning */
+    .filter-warning {
+      background: rgba(255, 85, 0, 0.1);
+      border: 1px solid rgba(255, 85, 0, 0.3);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: var(--accent-secondary);
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    .filter-warning strong {
+      color: var(--text-main);
+    }
+
+    /* Social Share Button */
+    .share-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 25px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .share-btn-x {
+      background: var(--text-main);
+      color: var(--bg-core);
+    }
+
+    .share-btn-x:hover {
+      background: var(--accent-primary);
+      transform: scale(1.05);
+    }
+
+    .share-hint {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Platform Guides Section */
+    .guides-section {
+      background: var(--bg-surface);
+      border-radius: 16px;
+      padding: 24px;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .guides-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .guide-article {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #222;
+    }
+
+    .guide-article:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .guide-article h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--accent-primary);
+      margin-bottom: 8px;
+    }
+
+    .guide-article p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .guide-article strong {
+      color: var(--accent-secondary);
+    }
+
+    .guide-steps {
+      list-style: none;
+      padding: 0;
+      margin: 8px 0 0 0;
+    }
+
+    .guide-steps li {
+      font-size: 14px;
+      color: var(--text-muted);
+      padding: 4px 0;
+      padding-left: 24px;
+      position: relative;
+    }
+
+    .guide-steps li::before {
+      content: attr(data-step);
+      position: absolute;
+      left: 0;
+      color: var(--accent-primary);
+      font-weight: 600;
+    }
+
     .platforms-section {
-      background: #151515;
+      background: var(--bg-surface);
       border-radius: 16px;
       padding: 24px;
       width: 100%;
@@ -290,7 +505,7 @@
     .platforms-title {
       font-size: 20px;
       font-weight: 600;
-      color: #e5e5e5;
+      color: var(--text-main);
       margin-bottom: 20px;
       text-align: center;
     }
@@ -314,13 +529,13 @@
     .platform-name {
       font-size: 16px;
       font-weight: 600;
-      color: #e5e5e5;
+      color: var(--text-main);
       margin: 0 0 6px 0;
     }
 
     .platform-status {
       font-size: 13px;
-      color: #888;
+      color: var(--text-muted);
       margin: 0;
     }
 
@@ -339,13 +554,13 @@
     .platforms-note {
       margin-top: 20px;
       font-size: 15px;
-      color: #888;
+      color: var(--text-muted);
       text-align: center;
       line-height: 1.6;
     }
 
     .platforms-note strong {
-      color: #feca57;
+      color: var(--accent-primary);
     }
 
     @media (max-width: 520px) {
@@ -419,17 +634,17 @@
 
     .image-label {
       font-size: 13px;
-      color: #888;
+      color: var(--text-muted);
     }
 
     .image-hint {
       font-size: 11px;
-      color: #feca57;
+      color: var(--accent-primary);
     }
 
     .hdr-hint {
       font-size: 11px;
-      color: #ff00ff;
+      color: var(--accent-secondary);
       animation: pulse 2s ease-in-out infinite;
     }
 
@@ -440,7 +655,7 @@
 
     .arrow {
       font-size: 32px;
-      color: #feca57;
+      color: var(--accent-primary);
       flex-shrink: 0;
     }
 
@@ -523,7 +738,7 @@
 
       .mobile-hint {
         font-size: 11px;
-        color: #888;
+        color: var(--text-muted);
       }
 
       .mobile-buttons {
@@ -543,13 +758,13 @@
       }
 
       .mobile-btn-upload {
-        background: #222;
-        color: #feca57;
+        background: var(--bg-surface);
+        color: var(--accent-primary);
         border: 1px solid #333;
       }
 
       .mobile-btn-download {
-        background: linear-gradient(135deg, #feca57, #ff9f43);
+        background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
         color: #000;
       }
 
@@ -576,7 +791,7 @@
       display: inline-block;
       width: 16px;
       height: 16px;
-      border: 2px solid #feca57;
+      border: 2px solid var(--accent-primary);
       border-top-color: transparent;
       border-radius: 50%;
       animation: spin 1s linear infinite;
@@ -611,14 +826,14 @@
     }
 
     .upload-overlay span {
-      color: #feca57;
+      color: var(--accent-primary);
       font-size: 14px;
       font-weight: 600;
       text-shadow: 0 1px 3px rgba(0,0,0,0.8);
     }
 
     .download-overlay span {
-      color: #ff00ff;
+      color: var(--accent-secondary);
       font-size: 14px;
       font-weight: 600;
       text-shadow: 0 1px 3px rgba(0,0,0,0.8);
@@ -641,14 +856,14 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      color: #888;
+      color: var(--text-muted);
       text-decoration: none;
       font-size: 14px;
       transition: color 0.2s ease;
     }
 
     .github-link:hover {
-      color: #fff;
+      color: var(--text-main);
     }
 
     .github-link svg {
@@ -678,8 +893,8 @@
   <div class="lamp-light" id="lampLight" aria-hidden="true"></div>
 
   <header>
-    <h1>Stand Out From The Feed</h1>
-    <p class="subtitle">Turn your avatar into an eye-catching HDR glow that pops on every scroll</p>
+    <h1>Make Your Profile Glow</h1>
+    <p class="subtitle">HDR that actually emits light on modern screens. Your avatar, but brighter than anyone else's.</p>
   </header>
 
   <main class="container">
@@ -748,9 +963,30 @@
 
     <div class="status" id="status" role="status" aria-live="polite"></div>
 
-    <aside class="info-box hdr-not-supported" id="hdrInfo" style="display: none;">
-      You won't see the glow on this screen, but it will glow on iPhones, MacBooks, and modern monitors!
-    </aside>
+    <!-- No-Filter Warning -->
+    <div class="filter-warning" role="alert">
+      <strong>Important:</strong> Do not apply filters when uploading to Instagram/Twitter, or the glow effect will break.
+    </div>
+
+    <!-- Device HDR Badge -->
+    <div class="device-badge" id="deviceBadge" role="status">
+      <span class="badge-icon" id="badgeIcon"></span>
+      <span>Display: <span class="badge-label" id="badgeLabel"></span></span>
+    </div>
+
+    <!-- Social Share -->
+    <div class="share-section">
+      <a href="https://twitter.com/intent/tweet?text=Just%20upgraded%20to%20an%20HDR%20avatar.%20Turn%20your%20brightness%20to%20100%25%20and%20look%20at%20my%20profile%20%E2%9A%A0%EF%B8%8F%0A%0AGet%20yours%3A%20flashblind.me&hashtags=flashblind"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="share-btn share-btn-x">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+        Share on X
+      </a>
+      <span class="share-hint">Tell your friends to turn up their brightness</span>
+    </div>
 
     <section class="platforms-section" aria-labelledby="platforms-heading">
       <h2 class="platforms-title" id="platforms-heading">Where will your avatar glow?</h2>
@@ -785,6 +1021,41 @@
         iPhones, MacBooks, Samsung Galaxy, and most devices made after 2020.
         On older screens, it will look like a normal image.
       </p>
+    </section>
+
+    <!-- Platform Upload Guides -->
+    <section class="guides-section" aria-labelledby="guides-heading">
+      <h2 class="guides-title" id="guides-heading">How to Upload Your Glowing Avatar</h2>
+
+      <article class="guide-article" id="instagram-guide">
+        <h3>Instagram</h3>
+        <ol class="guide-steps">
+          <li data-step="1.">Download the PNG from Flashblind</li>
+          <li data-step="2.">Open Instagram and go to Edit Profile</li>
+          <li data-step="3.">Upload the image as your profile picture</li>
+          <li data-step="4."><strong>Do NOT apply any filters</strong> — filters strip HDR metadata</li>
+        </ol>
+      </article>
+
+      <article class="guide-article" id="twitter-guide">
+        <h3>X / Twitter</h3>
+        <ol class="guide-steps">
+          <li data-step="1.">Download the PNG from Flashblind</li>
+          <li data-step="2.">Go to Settings → Profile → Edit</li>
+          <li data-step="3.">Upload as profile picture or header</li>
+          <li data-step="4.">Save without editing — the glow is preserved automatically</li>
+        </ol>
+      </article>
+
+      <article class="guide-article" id="threads-guide">
+        <h3>Threads</h3>
+        <p>Threads uses your Instagram profile picture. Update it on Instagram and it syncs automatically.</p>
+      </article>
+
+      <article class="guide-article" id="tiktok-guide">
+        <h3>TikTok</h3>
+        <p>TikTok compresses profile pictures and removes HDR. For the glow effect, use the image in your <strong>video content</strong> instead — HDR works in TikTok videos.</p>
+      </article>
     </section>
 
     <footer class="footer-links">
@@ -943,11 +1214,22 @@
       isConverting = false;
     }
 
-    // HDR Detection - only show notice for non-HDR displays
+    // HDR Detection - show gamified device badge
     function detectHDR() {
       const supportsHDR = window.matchMedia('(dynamic-range: high)').matches;
-      const hdrInfo = document.getElementById('hdrInfo');
-      hdrInfo.style.display = supportsHDR ? 'none' : 'block';
+      const deviceBadge = document.getElementById('deviceBadge');
+      const badgeIcon = document.getElementById('badgeIcon');
+      const badgeLabel = document.getElementById('badgeLabel');
+
+      if (supportsHDR) {
+        deviceBadge.className = 'device-badge hdr-ready';
+        badgeIcon.textContent = '✓';
+        badgeLabel.textContent = 'HDR Ready';
+      } else {
+        deviceBadge.className = 'device-badge hdr-legacy';
+        badgeIcon.textContent = '⚠';
+        badgeLabel.textContent = 'SDR / Legacy';
+      }
     }
 
     detectHDR();
