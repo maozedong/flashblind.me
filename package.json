@@ -1,11 +1,17 @@
 {
-  "name": "hdr-glow",
+  "name": "flashblind",
   "version": "1.0.0",
-  "description": "HDR Glow Avatar Generator - Convert images to glowing HDR PNGs for social media",
+  "type": "module",
+  "description": "Flashblind - Convert images to glowing HDR PNGs for social media",
   "scripts": {
-    "start": "node server.js",
     "build": "mkdir -p dist && cp index.html hdr-converter.js 2020_profile.icc favicon.png demo.png demo-sdr.png dist/",
-    "deploy": "npm run build && npx wrangler deploy"
+    "dev": "alchemy dev",
+    "deploy": "alchemy deploy --stage prod"
   },
-  "devDependencies": {}
+  "dependencies": {
+    "alchemy": "^0.78.0"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
 }

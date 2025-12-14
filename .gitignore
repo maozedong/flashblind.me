@@ -11,9 +11,16 @@
 
 # Node
 node_modules/
+bun.lock
 
 # Build output
 dist/
+
+# Alchemy
+.alchemy/
+
+# Environment
+.env
 
 # Test files
 *.wasm
