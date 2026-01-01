@@ -26,5 +26,8 @@ dist/
 # Secrets
 .secrets/
 
+# State
+.state/
+
 # Test files
 *.wasm

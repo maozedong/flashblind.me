@@ -41,6 +41,15 @@
   <meta name="apple-mobile-web-app-title" content="Flashblind">
   <meta name="application-name" content="Flashblind">
 
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QG35CDVJXT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-QG35CDVJXT');
+  </script>
+
   <!-- Preconnect for performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -492,6 +501,43 @@
       left: 0;
       color: var(--accent-primary);
       font-weight: 600;
+    }
+
+    .guides-links {
+      background: var(--bg-surface);
+      border-radius: 16px;
+      padding: 24px;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .guides-links h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .guides-links ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+    }
+
+    .guides-links a {
+      display: block;
+      background: #1a1a1a;
+      border-radius: 10px;
+      padding: 12px 14px;
+      text-decoration: none;
+      color: var(--accent-primary);
+      font-weight: 600;
+      text-align: center;
     }
 
     .platforms-section {
@@ -1058,6 +1104,15 @@
       </article>
     </section>
 
+    <section class="guides-links" aria-labelledby="guides-links-heading">
+      <h2 id="guides-links-heading">More Guides</h2>
+      <ul>
+        <li><a href="/guides/instagram-glow-avatar/">Instagram glow avatar</a></li>
+        <li><a href="/guides/x-hdr-avatar/">X (Twitter) HDR avatar</a></li>
+        <li><a href="/guides/threads-hdr-avatar/">Threads HDR avatar</a></li>
+      </ul>
+    </section>
+
     <footer class="footer-links">
       <a href="https://github.com/maozedong/flashblind.me" target="_blank" rel="noopener noreferrer" class="github-link" aria-label="View Flashblind source code on GitHub">
         <svg height="24" viewBox="0 0 16 16" width="24" fill="currentColor" aria-hidden="true">
@@ -1096,6 +1151,13 @@
     const mobileOriginalImg = document.getElementById('mobileOriginalImg');
     const mobileUploadBtn = document.getElementById('mobileUploadBtn');
     const mobileDownloadBtn = document.getElementById('mobileDownloadBtn');
+    const shareBtnX = document.querySelector('.share-btn-x');
+
+    function trackEvent(name, params = {}) {
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', name, params);
+      }
+    }
 
     // Click original image to upload (desktop)
     uploadContainer.addEventListener('click', () => fileInput.click());
@@ -1105,6 +1167,12 @@
 
     // Download function
     function downloadResult() {
+      trackEvent('download_glow_png', {
+        has_custom_image: Boolean(resultBlob),
+        brightness: parseFloat(brightnessSlider.value),
+        saturation: parseFloat(saturationSlider.value),
+        quality: parseInt(qualitySlider.value, 10)
+      });
       const a = document.createElement('a');
       if (resultBlob) {
         a.href = URL.createObjectURL(resultBlob);
@@ -1127,6 +1195,7 @@
     fileInput.addEventListener('change', (e) => {
       const file = e.target.files[0];
       if (file) {
+        trackEvent('upload_image', { file_type: file.type || 'unknown' });
         handleFile(file);
       }
     });
@@ -1205,6 +1274,13 @@
 
         // Enable download
         downloadOverlay.classList.remove('disabled');
+
+        trackEvent('conversion_success', {
+          has_custom_image: Boolean(selectedFile),
+          brightness: parseFloat(brightnessSlider.value),
+          saturation: parseFloat(saturationSlider.value),
+          quality: parseInt(qualitySlider.value, 10)
+        });
       } catch (error) {
         status.className = 'status active error';
         status.textContent = 'Error: ' + error.message;
@@ -1425,6 +1501,12 @@
       const lampLight = document.getElementById('lampLight');
       lampLight.classList.toggle('steady', !showingOriginal);
     });
+
+    if (shareBtnX) {
+      shareBtnX.addEventListener('click', () => {
+        trackEvent('share_x_click');
+      });
+    }
   </script>
   <!-- Cloudflare Web Analytics -->
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ef3c1b9ed9c0430d8239b9f06d187665"}'></script>

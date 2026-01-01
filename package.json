@@ -4,7 +4,7 @@
   "type": "module",
   "description": "Flashblind - Convert images to glowing HDR PNGs for social media",
   "scripts": {
-    "build": "mkdir -p dist && cp index.html hdr-converter.js 2020_profile.icc favicon.png demo.png demo-sdr.png robots.txt sitemap.xml dist/",
+    "build": "mkdir -p dist && cp index.html hdr-converter.js 2020_profile.icc favicon.png demo.png demo-sdr.png robots.txt sitemap.xml 6dd1365f3f3c3de1e5cdaa9f58781b23.txt dist/ && cp -r guides dist/",
     "dev": "alchemy dev",
     "deploy": "alchemy deploy --stage prod"
   },
@@ -12,6 +12,8 @@
     "alchemy": "^0.78.0"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@google-analytics/data": "^5.2.1",
+    "@types/bun": "latest",
+    "google-auth-library": "^10.5.0"
   }
 }
