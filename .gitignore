@@ -21,6 +21,10 @@ dist/
 
 # Environment
 .env
+.envrc
+
+# Secrets
+.secrets/
 
 # Test files
 *.wasm
