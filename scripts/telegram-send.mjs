@@ -8,7 +8,7 @@ if (!token || !chatId) {
 
 const text = process.argv.slice(2).join(" ").trim();
 if (!text) {
-  console.error("Usage: bun telegram-send.mjs \"message\"");
+  console.error("Usage: bun /opt/flashblind/scripts/telegram-send.mjs \"message\"");
   process.exit(1);
 }
 

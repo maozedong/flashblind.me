@@ -101,7 +101,7 @@ The result? HDR images that glow on Twitter, Instagram, Threads, Facebook, and e
 2. Click **Create a project** → **Connect to Git**
 3. Select this repository (`maozedong/flashblind.me`)
 4. Configure build settings:
-   - **Build command**: `npm run build`
+   - **Build command**: `bun run build`
    - **Build output directory**: `dist`
 5. Click **Save and Deploy**
 
@@ -115,10 +115,10 @@ git clone https://github.com/maozedong/flashblind.me.git
 cd flashblind.me
 
 # Install dependencies
-npm install
+bun install
 
 # Start local server
-npm start
+bun start
 
 # Open http://localhost:3000
 ```

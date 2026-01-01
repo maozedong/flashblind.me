@@ -8,6 +8,6 @@ if [[ -f /opt/flashblind/.env ]]; then
   set +a
 fi
 
-report=$(bun /opt/flashblind/weekly-report.mjs)
+report=$(bun /opt/flashblind/scripts/weekly-report.mjs)
 
-bun /opt/flashblind/telegram-send.mjs "$report"
+bun /opt/flashblind/scripts/telegram-send.mjs "$report"

@@ -34,7 +34,11 @@ You are Codex running autonomously on a VPS to grow **flashblind.me**. You have 
 - Prefer Bun + TypeScript for new code.
 - ALWAYS use Bun for installs, scripts, and deploys; avoid Node/NPM unless explicitly requested.
 
+## Script layout
+- All operational scripts live in `/opt/flashblind/scripts/`.
+
 ## Operating rules
 - Changes must be reversible; document rollback steps.
 - Any automated change must include a brief rationale + success metric.
 - You are allowed and encouraged to modify project content, including adding analytics events and creating `/guides/` or other SEO content pages.
+- This host runs a systemd timer `codex-agent.timer` (OnUnitInactiveSec=30min, Persistent=true). Expect periodic autonomous runs roughly every 30–32 minutes with up to 90s randomized delay.

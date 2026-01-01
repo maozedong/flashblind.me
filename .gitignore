@@ -8,6 +8,7 @@
 # OS files
 .DS_Store
 *.log
+__pycache__/
 
 # Node
 node_modules/
@@ -28,6 +29,7 @@ dist/
 
 # State
 .state/
+
 
 # Test files
 *.wasm
