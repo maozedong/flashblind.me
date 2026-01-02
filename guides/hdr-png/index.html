@@ -45,13 +45,59 @@
     .lead { color: var(--text-muted); margin-top: 12px; font-size: 1.05rem; }
     .card {
       background: rgba(18, 18, 18, 0.88);
-      border: 1px solid #222;
+      border: 1px solid #333;
       border-radius: 16px;
       padding: 24px;
       margin: 20px 0;
+      transition: all 0.3s ease;
     }
-    .steps li { margin: 12px 0; color: var(--text-muted); line-height: 1.6; }
-    .steps strong { color: var(--accent-primary); }
+    .cheat-sheet {
+      border: 1px solid var(--accent-primary);
+      box-shadow: 0 0 25px rgba(255, 204, 0, 0.15);
+      background: #111;
+    }
+    .cheat-sheet h2 {
+      color: var(--accent-primary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+    .steps { list-style: none; }
+    .steps li { 
+      margin: 16px 0; 
+      color: var(--text-main); 
+      font-size: 1.1rem;
+      display: flex;
+      align-items: flex-start;
+    }
+    .step-marker {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      background: var(--accent-primary);
+      color: #000;
+      font-weight: 800;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 14px;
+      font-size: 0.9rem;
+      box-shadow: 0 0 10px var(--accent-primary);
+    }
+    .steps strong { color: #fff; font-weight: 600; }
+    .warning-box {
+      margin-top: 20px;
+      padding: 12px;
+      background: rgba(255, 85, 0, 0.15);
+      border: 1px solid var(--accent-secondary);
+      border-radius: 8px;
+      color: #ffaa80;
+      font-size: 0.95rem;
+      text-align: center;
+      font-weight: 600;
+    }
     .cta {
       display: inline-flex;
       align-items: center;
@@ -59,15 +105,18 @@
       gap: 10px;
       background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
       color: #000;
-      padding: 14px 22px;
+      padding: 16px 32px;
       border-radius: 999px;
       text-decoration: none;
-      font-weight: 700;
-      margin-top: 16px;
+      font-weight: 800;
+      font-size: 1.1rem;
+      margin-top: 20px;
+      box-shadow: 0 0 20px rgba(255, 204, 0, 0.4);
+      transition: transform 0.2s;
     }
+    .cta:hover { transform: scale(1.05); }
     .faq h2 { font-family: 'Outfit', sans-serif; margin-bottom: 12px; }
     .faq p { color: var(--text-muted); line-height: 1.6; margin-bottom: 12px; }
-    .note { color: var(--accent-secondary); font-weight: 600; }
     footer { margin-top: 40px; color: var(--text-muted); font-size: 0.9rem; }
     .specs { display: grid; gap: 12px; margin-top: 12px; color: var(--text-muted); }
     .specs strong { color: var(--text-main); }
@@ -76,40 +125,41 @@
 <body>
   <main class="container">
     <header>
-      <h1>HDR PNG for Social Media: How to Export a Glowing Image</h1>
-      <p class="lead">An HDR PNG can display much brighter highlights on HDR-capable screens. Flashblind exports an indexed PNG with a Rec.2020 PQ profile so your avatar actually glows.</p>
-      <a class="cta" href="https://flashblind.me/">Create HDR PNG</a>
+      <h1>Make Any Image Glow with HDR</h1>
+      <p class="lead">Turn standard photos into radiant light sources. Perfect for social media, digital art, and screens.</p>
+      <a class="cta" href="https://flashblind.me/">⚡ Create Glowing PNG</a>
     </header>
 
-    <section class="card">
-      <h2>Quick steps</h2>
+    <section class="card cheat-sheet">
+      <h2>The Glow Cheat Sheet</h2>
       <ol class="steps">
-        <li><strong>Upload a photo</strong> to Flashblind.</li>
-        <li><strong>Boost brightness</strong> until highlights pop in the preview.</li>
-        <li><strong>Download the HDR PNG</strong> (indexed PNG with Rec.2020 PQ).</li>
-        <li><strong>Upload without filters</strong> to keep HDR metadata intact.</li>
-        <li class="note">If a platform compresses avatars, use the PNG in posts or stories instead.</li>
+        <li><span class="step-marker">1</span><span><strong>Upload to Flashblind.</strong> Convert any image.</span></li>
+        <li><span class="step-marker">2</span><span><strong>Boost Light.</strong> Increase brightness to exceed 100%.</span></li>
+        <li><span class="step-marker">3</span><span><strong>Export.</strong> Get the special indexed HDR PNG.</span></li>
+        <li><span class="step-marker">4</span><span><strong>Share.</strong> Post raw file to supported platforms.</span></li>
       </ol>
+      <div class="warning-box">
+        ⚠️ TIP: Compression kills glow. Share as a file or upload raw.
+      </div>
     </section>
 
     <section class="card">
-      <h2>Why this PNG glows</h2>
+      <h2>Why it glows</h2>
       <div class="specs">
-        <p><strong>HDR profile:</strong> Rec.2020 PQ ICC profile so HDR displays show brighter highlights.</p>
-        <p><strong>Indexed PNG:</strong> Color type 3, 8-bit for compatibility and smaller file size.</p>
-        <p><strong>Smooth gradients:</strong> Median-cut quantization plus Floyd-Steinberg dithering.</p>
+        <p><strong>Rec.2020 PQ:</strong> The color profile that tells screens "this pixel is brighter than white".</p>
+        <p><strong>Indexed PNG:</strong> Keeps the file small while preserving the special HDR data.</p>
+        <p><strong>Compatible:</strong> Works on X, Instagram, Facebook, and modern browsers.</p>
       </div>
     </section>
 
     <section class="card faq">
       <h2>FAQ</h2>
-      <p><strong>Where will an HDR PNG glow?</strong> On HDR-capable devices like modern iPhones, MacBooks, iPads, and flagship Android phones.</p>
-      <p><strong>Will it glow everywhere?</strong> On SDR screens it looks like a normal image, so it is still safe to post.</p>
-      <p><strong>Do I need an app?</strong> No. Flashblind runs in your browser and keeps files on-device.</p>
+      <p><strong>Is it just brightness?</strong> No, it's extended dynamic range. It uses extra light capacity of modern screens.</p>
+      <p><strong>Do I need an app?</strong> No, Flashblind does it all in the browser.</p>
     </section>
 
     <footer>
-      Want a brighter profile? Generate your HDR PNG at Flashblind.me.
+      Get the glow at Flashblind.me
     </footer>
   </main>
 </body>

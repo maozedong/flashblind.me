@@ -45,13 +45,59 @@
     .lead { color: var(--text-muted); margin-top: 12px; font-size: 1.05rem; }
     .card {
       background: rgba(18, 18, 18, 0.88);
-      border: 1px solid #222;
+      border: 1px solid #333;
       border-radius: 16px;
       padding: 24px;
       margin: 20px 0;
+      transition: all 0.3s ease;
     }
-    .steps li { margin: 12px 0; color: var(--text-muted); line-height: 1.6; }
-    .steps strong { color: var(--accent-primary); }
+    .cheat-sheet {
+      border: 1px solid var(--accent-primary);
+      box-shadow: 0 0 25px rgba(255, 204, 0, 0.15);
+      background: #111;
+    }
+    .cheat-sheet h2 {
+      color: var(--accent-primary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+    .steps { list-style: none; }
+    .steps li { 
+      margin: 16px 0; 
+      color: var(--text-main); 
+      font-size: 1.1rem;
+      display: flex;
+      align-items: flex-start;
+    }
+    .step-marker {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      background: var(--accent-primary);
+      color: #000;
+      font-weight: 800;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 14px;
+      font-size: 0.9rem;
+      box-shadow: 0 0 10px var(--accent-primary);
+    }
+    .steps strong { color: #fff; font-weight: 600; }
+    .warning-box {
+      margin-top: 20px;
+      padding: 12px;
+      background: rgba(255, 85, 0, 0.15);
+      border: 1px solid var(--accent-secondary);
+      border-radius: 8px;
+      color: #ffaa80;
+      font-size: 0.95rem;
+      text-align: center;
+      font-weight: 600;
+    }
     .cta {
       display: inline-flex;
       align-items: center;
@@ -59,46 +105,51 @@
       gap: 10px;
       background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
       color: #000;
-      padding: 14px 22px;
+      padding: 16px 32px;
       border-radius: 999px;
       text-decoration: none;
-      font-weight: 700;
-      margin-top: 16px;
+      font-weight: 800;
+      font-size: 1.1rem;
+      margin-top: 20px;
+      box-shadow: 0 0 20px rgba(255, 204, 0, 0.4);
+      transition: transform 0.2s;
     }
+    .cta:hover { transform: scale(1.05); }
     .faq h2 { font-family: 'Outfit', sans-serif; margin-bottom: 12px; }
     .faq p { color: var(--text-muted); line-height: 1.6; margin-bottom: 12px; }
-    .note { color: var(--accent-secondary); font-weight: 600; }
     footer { margin-top: 40px; color: var(--text-muted); font-size: 0.9rem; }
   </style>
 </head>
 <body>
   <main class="container">
     <header>
-      <h1>How to Make an Instagram Profile Picture Glow</h1>
-      <p class="lead">Instagram supports HDR images. Use Flashblind to create a glowing avatar that pops on bright screens.</p>
-      <a class="cta" href="https://flashblind.me/">Make my avatar glow</a>
+      <h1>Make Your Instagram Profile Glow</h1>
+      <p class="lead">Stop blending in. Force the timeline to look at you with an HDR avatar that actually emits light.</p>
+      <a class="cta" href="https://flashblind.me/">⚡ Create Glowing Avatar</a>
     </header>
 
-    <section class="card">
-      <h2>Quick steps</h2>
+    <section class="card cheat-sheet">
+      <h2>The Glow Cheat Sheet</h2>
       <ol class="steps">
-        <li><strong>Upload a photo</strong> to Flashblind.</li>
-        <li><strong>Boost brightness</strong> until the preview glows.</li>
-        <li><strong>Download the HDR PNG</strong> and save it to Photos.</li>
-        <li><strong>Upload to Instagram</strong> as your profile picture.</li>
-        <li class="note">Do NOT apply filters — filters strip HDR metadata.</li>
+        <li><span class="step-marker">1</span><span><strong>Upload to Flashblind.</strong> Any image works.</span></li>
+        <li><span class="step-marker">2</span><span><strong>Crank the Brightness.</strong> Make it sizzle in the preview.</span></li>
+        <li><span class="step-marker">3</span><span><strong>Download.</strong> You get a special HDR PNG.</span></li>
+        <li><span class="step-marker">4</span><span><strong>Upload to Instagram.</strong> Set as profile pic.</span></li>
       </ol>
+      <div class="warning-box">
+        ⚠️ CRITICAL: Do NOT apply Instagram filters. They kill the glow.
+      </div>
     </section>
 
     <section class="card faq">
       <h2>FAQ</h2>
-      <p><strong>Why does it glow?</strong> HDR avatars can display brightness beyond normal images on HDR screens.</p>
-      <p><strong>Where will it glow?</strong> iPhone X+, modern iPads, MacBooks, and most flagship Androids.</p>
-      <p><strong>Will it work on all devices?</strong> On SDR screens it looks like a normal image.</p>
+      <p><strong>Is this magic?</strong> Basically. It uses HDR technology to display colors brighter than your screen's white point.</p>
+      <p><strong>Who sees it?</strong> Anyone on an iPhone X or newer, MacBook Pro/Air, and modern bright Androids.</p>
+      <p><strong>Is it safe?</strong> Yes. It's just a standard PNG file with super-bright color data.</p>
     </section>
 
     <footer>
-      Want a brighter timeline? Use the HDR avatar generator at Flashblind.me.
+      Built for those who want to shine. Flashblind.me
     </footer>
   </main>
 </body>

@@ -203,6 +203,25 @@
       padding: 0 20px;
     }
 
+    .main-cta {
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      color: #000;
+      border: none;
+      padding: 16px 32px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 999px;
+      cursor: pointer;
+      margin-bottom: 30px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 0 20px rgba(255, 204, 0, 0.3);
+    }
+
+    .main-cta:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(255, 204, 0, 0.5);
+    }
+
     .subnote {
       color: var(--text-muted);
       text-align: center;
@@ -210,6 +229,38 @@
       max-width: 560px;
       margin: -26px auto 32px auto;
       padding: 0 20px;
+      display: none;
+    }
+
+    details {
+      background: var(--bg-surface);
+      border-radius: 16px;
+      padding: 16px;
+      width: 100%;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    summary {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-align: center;
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary::after {
+      content: '+';
+      margin-left: 8px;
+      color: var(--accent-primary);
+    }
+
+    details[open] summary::after {
+      content: '-';
     }
 
     .container {
@@ -1061,8 +1112,8 @@
 
   <header>
     <h1>Make Your Profile Glow</h1>
-    <p class="subtitle">HDR that actually emits light on modern screens. Your avatar, but brighter than anyone else's.</p>
-    <p class="subnote">Browser-native HDR PNG converter. No uploads, instant preview, Rec.2020 PQ export.</p>
+    <p class="subtitle">Turn your avatar into a light source. Visible on iPhone, Mac, and HDR screens.</p>
+    <button class="main-cta" onclick="document.getElementById('fileInput').click()">Upload Image</button>
   </header>
 
   <main class="container">
@@ -1191,28 +1242,31 @@
       </p>
     </section>
 
-    <section class="how-section" aria-labelledby="how-heading">
-      <h2 class="how-title" id="how-heading">How Flashblind creates HDR glow PNGs</h2>
-      <div class="how-grid">
-        <div class="how-card">
-          <h3>Local processing</h3>
-          <p>Your image never leaves your device. All HDR processing happens in your browser for privacy and speed.</p>
+    <details>
+      <summary>Technical Details (How it works)</summary>
+      <div class="how-section-content" style="margin-top: 20px;">
+        <h2 class="how-title" id="how-heading">Under the hood</h2>
+        <div class="how-grid">
+          <div class="how-card">
+            <h3>Local Processing</h3>
+            <p>Your image never leaves your device. All processing happens in your browser.</p>
+          </div>
+          <div class="how-card">
+            <h3>HDR Mapping</h3>
+            <p>We boost brightness and saturation to push highlights beyond standard limits.</p>
+          </div>
+          <div class="how-card">
+            <h3>Optimized Export</h3>
+            <p>Creates a specialized PNG that triggers HDR mode on compatible displays.</p>
+          </div>
         </div>
-        <div class="how-card">
-          <h3>HDR mapping</h3>
-          <p>Boost brightness and saturation to push highlights beyond SDR so they glow on HDR-capable screens.</p>
-        </div>
-        <div class="how-card">
-          <h3>Social-ready export</h3>
-          <p>Exported as an indexed HDR PNG that stays lightweight and compatible with social platforms.</p>
-        </div>
+        <ul class="specs-list">
+          <li><strong>Output:</strong> Indexed HDR PNG (Rec.2020 PQ).</li>
+          <li><strong>Tech:</strong> Median-cut quantization + Dithering.</li>
+          <li><strong>Inputs:</strong> PNG, JPEG, WebP, HEIC, AVIF.</li>
+        </ul>
       </div>
-      <ul class="specs-list">
-        <li><strong>Output:</strong> Indexed PNG (color type 3, 8-bit) with Rec.2020 PQ ICC profile.</li>
-        <li><strong>Color handling:</strong> Median-cut quantization + Floyd-Steinberg dithering for smooth gradients.</li>
-        <li><strong>Inputs:</strong> PNG, JPEG, WebP, HEIC, AVIF, GIF, TIFF, BMP.</li>
-      </ul>
-    </section>
+    </details>
 
     <section class="faq-section" aria-labelledby="faq-heading">
       <h2 class="faq-title" id="faq-heading">FAQ</h2>

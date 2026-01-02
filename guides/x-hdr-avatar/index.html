@@ -45,13 +45,59 @@
     .lead { color: var(--text-muted); margin-top: 12px; font-size: 1.05rem; }
     .card {
       background: rgba(18, 18, 18, 0.88);
-      border: 1px solid #222;
+      border: 1px solid #333;
       border-radius: 16px;
       padding: 24px;
       margin: 20px 0;
+      transition: all 0.3s ease;
     }
-    .steps li { margin: 12px 0; color: var(--text-muted); line-height: 1.6; }
-    .steps strong { color: var(--accent-primary); }
+    .cheat-sheet {
+      border: 1px solid var(--accent-primary);
+      box-shadow: 0 0 25px rgba(255, 204, 0, 0.15);
+      background: #111;
+    }
+    .cheat-sheet h2 {
+      color: var(--accent-primary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+    .steps { list-style: none; }
+    .steps li { 
+      margin: 16px 0; 
+      color: var(--text-main); 
+      font-size: 1.1rem;
+      display: flex;
+      align-items: flex-start;
+    }
+    .step-marker {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      background: var(--accent-primary);
+      color: #000;
+      font-weight: 800;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 14px;
+      font-size: 0.9rem;
+      box-shadow: 0 0 10px var(--accent-primary);
+    }
+    .steps strong { color: #fff; font-weight: 600; }
+    .warning-box {
+      margin-top: 20px;
+      padding: 12px;
+      background: rgba(255, 85, 0, 0.15);
+      border: 1px solid var(--accent-secondary);
+      border-radius: 8px;
+      color: #ffaa80;
+      font-size: 0.95rem;
+      text-align: center;
+      font-weight: 600;
+    }
     .cta {
       display: inline-flex;
       align-items: center;
@@ -59,46 +105,51 @@
       gap: 10px;
       background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
       color: #000;
-      padding: 14px 22px;
+      padding: 16px 32px;
       border-radius: 999px;
       text-decoration: none;
-      font-weight: 700;
-      margin-top: 16px;
+      font-weight: 800;
+      font-size: 1.1rem;
+      margin-top: 20px;
+      box-shadow: 0 0 20px rgba(255, 204, 0, 0.4);
+      transition: transform 0.2s;
     }
+    .cta:hover { transform: scale(1.05); }
     .faq h2 { font-family: 'Outfit', sans-serif; margin-bottom: 12px; }
     .faq p { color: var(--text-muted); line-height: 1.6; margin-bottom: 12px; }
-    .note { color: var(--accent-secondary); font-weight: 600; }
     footer { margin-top: 40px; color: var(--text-muted); font-size: 0.9rem; }
   </style>
 </head>
 <body>
   <main class="container">
     <header>
-      <h1>How to Make an X (Twitter) Avatar Glow</h1>
-      <p class="lead">X supports HDR avatars on bright screens. Flashblind makes the conversion in your browser.</p>
-      <a class="cta" href="https://flashblind.me/">Make my avatar glow</a>
+      <h1>Make Your X / Twitter Profile Glow</h1>
+      <p class="lead">Dominate the timeline. Upgrade your PFP to High Dynamic Range and stand out.</p>
+      <a class="cta" href="https://flashblind.me/">⚡ Create Glowing Avatar</a>
     </header>
 
-    <section class="card">
-      <h2>Quick steps</h2>
+    <section class="card cheat-sheet">
+      <h2>The Glow Cheat Sheet</h2>
       <ol class="steps">
-        <li><strong>Upload a photo</strong> to Flashblind.</li>
-        <li><strong>Adjust brightness</strong> until the preview glows.</li>
-        <li><strong>Download the HDR PNG</strong>.</li>
-        <li><strong>Upload to X</strong> as your profile photo or header.</li>
-        <li class="note">Avoid edits/filters — they can strip HDR metadata.</li>
+        <li><span class="step-marker">1</span><span><strong>Upload to Flashblind.</strong> PFP or Header.</span></li>
+        <li><span class="step-marker">2</span><span><strong>Boost it.</strong> Adjust brightness until it glows.</span></li>
+        <li><span class="step-marker">3</span><span><strong>Download.</strong> Get the HDR PNG.</span></li>
+        <li><span class="step-marker">4</span><span><strong>Upload to X.</strong> Save without cropping if possible.</span></li>
       </ol>
+      <div class="warning-box">
+        ⚠️ TIP: Don't edit inside X app. Edits remove the glow data.
+      </div>
     </section>
 
     <section class="card faq">
       <h2>FAQ</h2>
-      <p><strong>Why does it look brighter?</strong> HDR images can exceed standard brightness levels on HDR displays.</p>
-      <p><strong>Where will it glow?</strong> iPhone X+, MacBook Pro (2018+), and most flagship Androids.</p>
-      <p><strong>Will it look normal on older screens?</strong> Yes, it will look like a regular image.</p>
+      <p><strong>Does it work on headers?</strong> Yes! Glowing headers are huge on X.</p>
+      <p><strong>Which devices see it?</strong> iPhones, MacBooks, and high-end Androids.</p>
+      <p><strong>Is it allowed?</strong> Completely. It's just a high-quality image format.</p>
     </section>
 
     <footer>
-      Use Flashblind to create an HDR PNG that stands out on the timeline.
+      Get the glow at Flashblind.me
     </footer>
   </main>
 </body>
