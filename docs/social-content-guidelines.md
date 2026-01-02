@@ -1,73 +1,104 @@
-# Flashblind Social Content Guidelines (TikTok, Instagram, X)
+# ⚡ Flashblind Social Content Guidelines ⚡
 
-## Voice and Vibe
-- Hype, playful, bold, a little chaotic but friendly.
-- Short, punchy lines. Sound like a creator, not a company.
-- Keep it fun and visual. Make people want to see the glow.
+> **Mission:** Make every timeline brighter. Literally. We help people turn boring profile pics into blindingly glowing flexes.
 
-## Core Message
-- Make your pics glow.
-- It is fast.
-- No uploads. Your pics stay with you.
-- Made for social.
+---
 
-## Do and Do Not
-**Do**
-- Show before and after.
-- Use glow language: glow, shine, pop, bright, glow-up.
-- Keep demos under 10 seconds.
-- Lead with the reveal.
+## 🗣️ Voice & Vibe
+**We are:** The internet bestie who just found a cheat code. The "cool older sibling" of tech. Hype, energetic, slightly chaotic but helpful.
+**We are NOT:** A software manual, a developer, or a corporate suit.
 
-**Do not**
-- Use tech terms or specs.
-- Promise it looks the same on every screen.
-- Say AI if it is not true.
+**Keywords:** Glow, Pop, Bright, Cheat Code, Secret, Glitch, Shiny, W, L (for non-users).
 
-## Content Structure (The Flash Formula)
-1. Hook (0-2s): Call out the boring pic.
-2. Reveal (2-5s): Show the glow.
-3. How (5-10s): "Go to flashblind.me, pick a photo, done."
-4. CTA: "Try it now."
+---
 
-## Platform Tips
-**TikTok**
-- Fast cuts, trending audio, big on-screen text.
-- Show the glow on a real phone screen.
-- Make it feel like a secret hack.
+## ✅ The Do's & ❌ The Don'ts
 
-**Instagram**
-- Reels: glow reveal in the first second.
-- Stories: quick poll, "Which one wins?"
-- Carousel: 1 reveal, 2 how-to, 3 CTA.
+| DO THIS 🔥 | DELETE THIS 🗑️ |
+|------------|---------------|
+| **Show, don't just tell.** Screen record the "Glow" vs. "No Glow". | **Explain the math.** No one cares about "Rec.2020 PQ color profiles." |
+| **Use "Glow" language.** "Turn the lights on," "Flashbang your ex." | **Use "Tech" language.** "High Dynamic Range," "ICC chunk," "Bit depth." |
+| **Hype the exclusivity.** "Only for people with good screens." | **Apologize for compatibility.** If their phone is old, that's a *them* problem. |
+| **Keep it fast.** 5-second demos. | **Make 3-minute tutorials.** It’s drag-and-drop, not rocket science. |
 
-**X (Twitter)**
-- One-line hooks.
-- Post the before and after in the same thread.
-- Ask for replies with their PFPs.
+---
 
-## Hooks
-- "Stop scrolling. Look at this glow."
-- "Your PFP is asleep. Wake it up."
-- "This glow-up is unfair."
-- "Turn your brightness down before you watch."
-- "Main character energy in 5 seconds."
+## 📱 Content Structure (The "Flash" Formula)
 
-## Caption Bank
-- "Lights on."
-- "Glow check."
-- "No uploads. Just glow."
-- "Your feed is too dark. Fixed it."
-- "This is your sign to glow up."
+1.  ** The Hook (0-2s):** Call out their boring PFP. "Why is your face so dim?"
+2.  **The Reveal (2-5s):** Show the *Flashblind* version. Ideally on a phone screen at max brightness.
+3.  **The How-To (5-10s):** "Go to Flashblind.me, drop image, boom."
+4.  **The CTA:** "Link in bio to blind your followers."
 
-## CTAs
-- "Try it now"
-- "Make yours glow"
-- "Pick a photo"
-- "Glow up your profile"
+---
 
-## Mini FAQ
-**Q: Is it safe?**
-A: Yes. Your pics stay on your device.
+## 🎨 Platform-Specific Strategy
 
-**Q: Why does it look different on some screens?**
-A: It looks best on brighter, newer screens.
+### **TikTok 🎵**
+*   **Strategy:** "The Secret Hack."
+*   **Vibe:** Fast cuts, trending audio, phone-recording-phone (shows the HDR glow better than screen recording).
+*   **Idea:** Duet a dim PFP and say "I can fix this."
+*   **Note:** Since TikTok avatars might not glow, frame it as "How to win Instagram/Twitter."
+
+### **Instagram 📸**
+*   **Strategy:** Visual Proof.
+*   **Stories:** Post a "Regular" vs "Flashblind" poll. The difference is obvious on OLED screens.
+*   **Reels:** "POV: You finally updated your PFP."
+*   **Bio:** "Get the glow ⚡ [Link]"
+
+### **X (Twitter) 🐦**
+*   **Strategy:** The Flex.
+*   **Vibe:** Snarky, elitist (jokingly), community-focused.
+*   **Tactic:** "Glow Check" threads. Reply to big accounts with a glowing version of their PFP.
+*   **Format:** Post the actual PNG so it glows in the timeline.
+
+---
+
+## 🪝 Example Hooks
+
+*   "Stop scrolling. Look how bright this is."
+*   "Your PFP is on Low Power Mode. Let's fix it."
+*   "I found a glitch in the Instagram matrix."
+*   "Warning: Turn your brightness down before watching."
+*   "How to become the main character in the group chat."
+
+---
+
+## 📝 Caption Bank
+
+**Short & Punchy:**
+*   💡 Lights on.
+*   SDR is so 2020.
+*   Flashbang incoming. ⚡
+*   No filter, just pure brightness.
+*   Your feed is too dark. Fixed it.
+
+**Hype:**
+*   This is not a filter. This is a display hack. 🤯 Get yours at flashblind.me
+*   Turn your brightness to 100% and thank me later. ☀️
+*   Making my avatar brighter than your future. (JK, love u)
+
+---
+
+## 📣 Calls to Action (CTAs)
+
+*   "Get the glow in bio ⚡"
+*   "Blind your haters at the link in bio."
+*   "Try it before they patch it 🔗"
+*   "Drop your PFP below and I’ll make it glow." (Engagement farming)
+
+---
+
+## ❓ Tiny FAQ (For comments)
+
+**Q: Is this safe?**
+A: 100%. It runs in your browser. We don't steal your pics.
+
+**Q: Why doesn't it work on my phone?**
+A: You need a modern screen (OLED/HDR). Time for an upgrade? 😉
+
+**Q: Does it cost money?**
+A: Nope. Free vibes only.
+
+**Q: How do I do it?**
+A: Flashblind.me. Drag, drop, done.
