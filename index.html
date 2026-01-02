@@ -8,7 +8,7 @@
   <!-- Primary Meta Tags -->
   <title>Flashblind: The Brightest Profile on the Timeline | HDR Avatar Generator</title>
   <meta name="title" content="Flashblind: The Brightest Profile on the Timeline | HDR Avatar Generator">
-  <meta name="description" content="Unfair advantage for your avatar. Convert any image into HDR that actually emits light on iPhones and MacBooks. Your profile will outshine everyone else's.">
+  <meta name="description" content="Browser-native HDR PNG avatar generator. Convert any image into HDR that actually emits light on iPhones and MacBooks — no uploads, instant preview.">
   <meta name="keywords" content="HDR avatar, glowing profile picture, Instagram avatar, Twitter profile picture, HDR glow effect, social media avatar, profile picture maker, HDR image converter, glow effect generator, flashblind">
   <meta name="author" content="Ostap Nagovitsyn">
   <meta name="robots" content="index, follow">
@@ -20,7 +20,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://flashblind.me/">
   <meta property="og:title" content="Flashblind: The Brightest Profile on the Timeline">
-  <meta property="og:description" content="Unfair advantage for your avatar. HDR that actually emits light. Your profile will outshine everyone else's.">
+  <meta property="og:description" content="Browser-native HDR PNG avatar generator. HDR that actually emits light — no uploads, instant preview.">
   <meta property="og:image" content="https://flashblind.me/demo.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="1200">
@@ -32,7 +32,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://flashblind.me/">
   <meta name="twitter:title" content="Flashblind: The Brightest Profile on the Timeline">
-  <meta name="twitter:description" content="Unfair advantage for your avatar. HDR that actually emits light. Your profile will outshine everyone else's.">
+  <meta name="twitter:description" content="Browser-native HDR PNG avatar generator. HDR that actually emits light — no uploads, instant preview.">
   <meta name="twitter:image" content="https://flashblind.me/demo.png">
   <meta name="twitter:image:alt" content="Example of an HDR glowing avatar">
 
@@ -72,7 +72,7 @@
     "@type": "WebApplication",
     "name": "Flashblind",
     "url": "https://flashblind.me/",
-    "description": "Free online tool to convert photos into eye-catching HDR glow avatars for social media profiles.",
+    "description": "Free browser-native tool to convert photos into HDR PNG glow avatars for social media profiles.",
     "applicationCategory": "MultimediaApplication",
     "operatingSystem": "Any",
     "browserRequirements": "Requires JavaScript. Works best on modern browsers.",
@@ -84,6 +84,8 @@
     "featureList": [
       "Convert images to HDR glow effect",
       "Adjustable brightness and saturation",
+      "Indexed PNG (color type 3, 8-bit) with Rec.2020 PQ ICC profile",
+      "Median-cut quantization with Floyd-Steinberg dithering",
       "Works with Instagram, Twitter, Threads, Facebook",
       "No account required",
       "Privacy-friendly - all processing done in browser"
@@ -107,8 +109,8 @@
         "name": "How to make Instagram profile picture glow?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Use Flashblind to convert your image to HDR format. Upload the converted PNG to Instagram without applying any filters. The glow effect will be visible on iPhones, MacBooks, and other HDR-capable displays."
-        }
+        "text": "Use Flashblind to convert your image to HDR format. Upload the converted PNG to Instagram without applying filters. The glow effect is visible on iPhones, MacBooks, and other HDR-capable displays."
+      }
       },
       {
         "@type": "Question",
@@ -123,16 +125,24 @@
         "name": "Does Instagram support HDR photos?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, Instagram supports HDR photos when uploaded correctly. The key is to upload the image without applying any filters, as filters strip the HDR metadata. The HDR effect is visible on devices with HDR displays."
-        }
+        "text": "Yes, Instagram supports HDR photos when uploaded correctly. Upload the image without applying filters because filters strip HDR metadata. The HDR effect is visible on devices with HDR displays."
+      }
+      },
+      {
+        "@type": "Question",
+        "name": "What is an HDR PNG?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+        "text": "An HDR PNG is a PNG that includes an HDR color profile (like Rec.2020 PQ) so HDR-capable displays can show brighter highlights than standard SDR images."
+      }
       },
       {
         "@type": "Question",
         "name": "What devices can see HDR glowing avatars?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "HDR avatars are visible on devices with HDR displays including: iPhone X and newer, MacBook Pro (2018+), MacBook Air (M1+), iPad Pro, Samsung Galaxy S10+, and most flagship phones and monitors made after 2020."
-        }
+        "text": "HDR avatars are visible on devices with HDR displays including: iPhone X and newer, MacBook Pro (2018+), MacBook Air (M1+), iPad Pro, Samsung Galaxy S10+, and most flagship phones and monitors made after 2020."
+      }
       }
     ]
   }
@@ -190,6 +200,15 @@
       margin-bottom: 40px;
       text-align: center;
       max-width: 500px;
+      padding: 0 20px;
+    }
+
+    .subnote {
+      color: var(--text-muted);
+      text-align: center;
+      font-size: 14px;
+      max-width: 560px;
+      margin: -26px auto 32px auto;
       padding: 0 20px;
     }
 
@@ -609,6 +628,108 @@
       color: var(--accent-primary);
     }
 
+    .how-section {
+      background: var(--bg-surface);
+      border-radius: 16px;
+      padding: 24px;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .how-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-main);
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .how-card {
+      background: #1a1a1a;
+      border-radius: 12px;
+      padding: 14px;
+    }
+
+    .how-card h3 {
+      font-size: 15px;
+      color: var(--accent-primary);
+      margin-bottom: 6px;
+    }
+
+    .how-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .specs-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .specs-list li {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      background: #141414;
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+
+    .specs-list strong {
+      color: var(--accent-secondary);
+    }
+
+    .faq-section {
+      background: var(--bg-surface);
+      border-radius: 16px;
+      padding: 24px;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .faq-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-main);
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .faq-item {
+      background: #1a1a1a;
+      border-radius: 12px;
+      padding: 14px;
+    }
+
+    .faq-item h3 {
+      font-size: 15px;
+      color: var(--accent-primary);
+      margin-bottom: 6px;
+    }
+
+    .faq-item p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
     @media (max-width: 520px) {
       .platforms-section {
         padding: 20px;
@@ -941,6 +1062,7 @@
   <header>
     <h1>Make Your Profile Glow</h1>
     <p class="subtitle">HDR that actually emits light on modern screens. Your avatar, but brighter than anyone else's.</p>
+    <p class="subnote">Browser-native HDR PNG converter. No uploads, instant preview, Rec.2020 PQ export.</p>
   </header>
 
   <main class="container">
@@ -1069,6 +1191,55 @@
       </p>
     </section>
 
+    <section class="how-section" aria-labelledby="how-heading">
+      <h2 class="how-title" id="how-heading">How Flashblind creates HDR glow PNGs</h2>
+      <div class="how-grid">
+        <div class="how-card">
+          <h3>Local processing</h3>
+          <p>Your image never leaves your device. All HDR processing happens in your browser for privacy and speed.</p>
+        </div>
+        <div class="how-card">
+          <h3>HDR mapping</h3>
+          <p>Boost brightness and saturation to push highlights beyond SDR so they glow on HDR-capable screens.</p>
+        </div>
+        <div class="how-card">
+          <h3>Social-ready export</h3>
+          <p>Exported as an indexed HDR PNG that stays lightweight and compatible with social platforms.</p>
+        </div>
+      </div>
+      <ul class="specs-list">
+        <li><strong>Output:</strong> Indexed PNG (color type 3, 8-bit) with Rec.2020 PQ ICC profile.</li>
+        <li><strong>Color handling:</strong> Median-cut quantization + Floyd-Steinberg dithering for smooth gradients.</li>
+        <li><strong>Inputs:</strong> PNG, JPEG, WebP, HEIC, AVIF, GIF, TIFF, BMP.</li>
+      </ul>
+    </section>
+
+    <section class="faq-section" aria-labelledby="faq-heading">
+      <h2 class="faq-title" id="faq-heading">FAQ</h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3>How to make Instagram profile picture glow?</h3>
+          <p>Use Flashblind to convert your image to HDR. Upload the PNG to Instagram without applying filters.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Why are some avatars so bright?</h3>
+          <p>They use HDR images that can display much brighter highlights on HDR-capable screens.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Does Instagram support HDR photos?</h3>
+          <p>Yes, when uploaded without filters. Filters often strip HDR metadata and reduce the glow.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What is an HDR PNG?</h3>
+          <p>It is a PNG with an HDR color profile (Rec.2020 PQ) so HDR screens can show brighter highlights.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What devices can see HDR glow?</h3>
+          <p>HDR screens like iPhone X+, MacBook Pro (2018+), MacBook Air (M1+), iPad Pro, and flagship Androids.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- Platform Upload Guides -->
     <section class="guides-section" aria-labelledby="guides-heading">
       <h2 class="guides-title" id="guides-heading">How to Upload Your Glowing Avatar</h2>
@@ -1110,6 +1281,8 @@
         <li><a href="/guides/instagram-glow-avatar/">Instagram glow avatar</a></li>
         <li><a href="/guides/x-hdr-avatar/">X (Twitter) HDR avatar</a></li>
         <li><a href="/guides/threads-hdr-avatar/">Threads HDR avatar</a></li>
+        <li><a href="/guides/facebook-hdr-avatar/">Facebook HDR avatar</a></li>
+        <li><a href="/guides/hdr-png/">HDR PNG for social media</a></li>
       </ul>
     </section>
 
