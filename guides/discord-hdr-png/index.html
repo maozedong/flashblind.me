@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Share HDR PNG on Discord (Without Losing the Glow)</title>
+  <meta name="description" content="How to share glowing HDR images on Discord. Use Flashblind to create indexed HDR PNGs (Rec.2020 PQ) that work in Discord chats without washing out.">
+  <link rel="canonical" href="https://flashblind.me/guides/discord-hdr-png/">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Share HDR PNG on Discord (Without Losing the Glow)">
+  <meta property="og:description" content="Learn the trick to sending radiant HDR images in Discord chats using Flashblind.">
+  <meta property="og:url" content="https://flashblind.me/guides/discord-hdr-png/">
+  <meta property="og:image" content="https://flashblind.me/demo.png">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Share HDR PNG on Discord">
+  <meta name="twitter:description" content="Stop your HDR memes from looking washed out. Here is how to share them properly on Discord.">
+  <meta name="twitter:image" content="https://flashblind.me/demo.png">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@600;700&display=swap" rel="stylesheet">
+  
+  <!-- JSON-LD Schema -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Share HDR PNG on Discord (Without Losing the Glow)",
+      "image": "https://flashblind.me/demo.png",
+      "author": {
+        "@type": "Organization",
+        "name": "Flashblind"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Flashblind",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://flashblind.me/android-chrome-512x512.png"
+        }
+      },
+      "datePublished": "2026-01-04",
+      "description": "Comprehensive guide to sharing HDR PNG images on Discord using Rec.2020 PQ profiles."
+    }
+  </script>
+
+  <style>
+    :root {
+      --bg-core: #000000;
+      --bg-surface: #121212;
+      --accent-primary: #FFCC00;
+      --accent-secondary: #FF5500;
+      --text-main: #FFFFFF;
+      --text-muted: #9a9a9a;
+      --link-color: #FFCC00;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at top, #1b1b1b 0%, #050505 45%, #000 100%);
+      color: var(--text-main);
+      padding: 48px 20px;
+    }
+    .container { max-width: 860px; margin: 0 auto; }
+    header { margin-bottom: 36px; text-align: center; }
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.5rem;
+      line-height: 1.1;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    h2 {
+      font-family: 'Outfit', sans-serif;
+      color: var(--text-main);
+      margin-bottom: 16px;
+    }
+    p { line-height: 1.6; margin-bottom: 16px; color: var(--text-muted); }
+    a { color: var(--link-color); text-decoration: none; transition: opacity 0.2s; }
+    a:hover { opacity: 0.8; }
+    
+    .lead { color: var(--text-muted); font-size: 1.15rem; max-width: 600px; margin: 0 auto 24px auto; }
+    
+    .card {
+      background: rgba(18, 18, 18, 0.88);
+      border: 1px solid #333;
+      border-radius: 16px;
+      padding: 32px;
+      margin: 24px 0;
+      transition: all 0.3s ease;
+    }
+    
+    .cheat-sheet {
+      border: 1px solid var(--accent-primary);
+      box-shadow: 0 0 30px rgba(255, 204, 0, 0.1);
+      background: #0f0f0f;
+    }
+    
+    .cheat-sheet h2 {
+      color: var(--accent-primary);
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+      border-bottom: 1px solid rgba(255, 204, 0, 0.2);
+      padding-bottom: 12px;
+    }
+    
+    .steps { list-style: none; }
+    .steps li { 
+      margin: 20px 0; 
+      color: var(--text-main); 
+      font-size: 1.1rem;
+      display: flex;
+      align-items: flex-start;
+    }
+    
+    .step-marker {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      background: var(--accent-primary);
+      color: #000;
+      font-weight: 800;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 16px;
+      font-size: 1rem;
+      box-shadow: 0 0 10px var(--accent-primary);
+    }
+    
+    .steps strong { color: #fff; font-weight: 600; display: block; margin-bottom: 4px; }
+    .steps span { display: block; }
+    
+    .warning-box {
+      margin-top: 24px;
+      padding: 16px;
+      background: rgba(255, 85, 0, 0.1);
+      border: 1px solid var(--accent-secondary);
+      border-radius: 8px;
+      color: #ffaa80;
+      font-size: 0.95rem;
+      text-align: center;
+      font-weight: 600;
+    }
+    
+    .cta-container { text-align: center; margin: 32px 0; }
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      color: #000;
+      padding: 18px 40px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1.15rem;
+      box-shadow: 0 0 25px rgba(255, 204, 0, 0.3);
+      transition: transform 0.2s;
+    }
+    .cta:hover { transform: scale(1.05); }
+    
+    .checklist { list-style: none; padding-left: 0; }
+    .checklist li {
+      margin-bottom: 12px;
+      padding-left: 24px;
+      position: relative;
+      color: var(--text-muted);
+    }
+    .checklist li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--accent-primary);
+      font-weight: bold;
+    }
+    .checklist strong { color: var(--text-main); }
+    
+    .faq-item { margin-bottom: 24px; }
+    .faq-item h3 { font-size: 1.1rem; color: var(--text-main); margin-bottom: 8px; font-family: 'Inter', sans-serif; }
+    
+    .related-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .related-chip {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    .related-chip:hover {
+      border-color: var(--accent-primary);
+      color: var(--text-main);
+    }
+    
+    footer { margin-top: 60px; text-align: center; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid #222; padding-top: 30px;}
+    
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      .card { padding: 20px; }
+    }
+  </style>
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QG35CDVJXT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-QG35CDVJXT');
+  </script>
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>Share HDR PNG on Discord (Without Losing the Glow)</h1>
+      <p class="lead">Discord is one of the best platforms for sharing HDR art and memes, but only if you send the file correctly.</p>
+      <div class="cta-container">
+        <a class="cta" href="https://flashblind.me/">⚡ Create Discord HDR</a>
+      </div>
+    </header>
+
+    <section class="card cheat-sheet">
+      <h2>Discord Glow Cheat Sheet</h2>
+      <ol class="steps">
+        <li>
+          <span class="step-marker">1</span>
+          <div>
+            <strong>Create with Flashblind</strong>
+            <span>Convert your image to an 8-bit indexed HDR PNG.</span>
+          </div>
+        </li>
+        <li>
+          <span class="step-marker">2</span>
+          <div>
+            <strong>Save the File</strong>
+            <span>Download the result to your device. Do not copy it.</span>
+          </div>
+        </li>
+        <li>
+          <span class="step-marker">3</span>
+          <div>
+            <strong>Drag & Drop</strong>
+            <span>Drop the file directly into the Discord chat window.</span>
+          </div>
+        </li>
+        <li>
+          <span class="step-marker">4</span>
+          <div>
+            <strong>Send as File</strong>
+            <span>Ensure it sends as an image attachment, not a link preview.</span>
+          </div>
+        </li>
+      </ol>
+      <div class="warning-box">
+        ⚠️ DO NOT PASTE: Pasting from the clipboard often strips HDR metadata. Always upload the file directly.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Why Discord Works for HDR</h2>
+      <p>Unlike many social platforms that aggressively compress images and strip metadata, Discord's file sharing capabilities are surprisingly robust for high-fidelity formats.</p>
+      <p>Flashblind takes advantage of this by creating a <strong>browser-native, 8-bit indexed PNG</strong>. This format uses a specialized color palette to achieve High Dynamic Range without the massive file size of 16-bit or 32-bit images.</p>
+      <ul class="checklist">
+        <li><strong>No Uploads:</strong> Flashblind processes everything locally on your device.</li>
+        <li><strong>Small File Size:</strong> Indexed color keeps files light enough to help avoid aggressive compression.</li>
+        <li><strong>Broad Compatibility:</strong> Standard PNG files open across devices, while HDR appearance depends on HDR-capable displays and app support.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Common Mistakes</h2>
+      <p>If your image isn't glowing in the chat, check these common issues:</p>
+      <ul class="checklist">
+        <li><strong>Pasting:</strong> You copied the image instead of saving the file. Clipboard operations often convert images to standard sRGB.</li>
+        <li><strong>File Size Limits:</strong> Large files are often compressed by Discord. Flashblind's indexed PNGs are usually compact enough to avoid this.</li>
+        <li><strong>Wrong Profile:</strong> The image must have a <strong>Rec.2020 PQ ICC profile</strong> to trigger the HDR mode on screens.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Quick Settings Checklist</h2>
+      <p>For the best results on Flashblind, ensure these settings are applied (default):</p>
+      <ul class="checklist">
+        <li><strong>Format:</strong> Indexed PNG (Color Type 3)</li>
+        <li><strong>Bit Depth:</strong> 8-bit</li>
+        <li><strong>Profile:</strong> Rec.2020 PQ (Perceptual Quantizer)</li>
+        <li><strong>Dithering:</strong> Floyd–Steinberg (smoother gradients)</li>
+        <li><strong>Quantization:</strong> Median-cut</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>FAQ</h2>
+      <div class="faq-item">
+        <h3>Can mobile users see the glow?</h3>
+        <p>It depends on the device and app version. While the file contains the correct HDR data, mobile app support for rendering it varies.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Why does it look washed out on my second monitor?</h3>
+        <p>HDR only works if the display supports it and HDR is enabled in your OS settings. Standard SDR monitors will display a "tone-mapped" version which looks correct but doesn't glow.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Is this safe?</h3>
+        <p>Completely. It is just a standard PNG file with specific metadata. Flashblind does not upload your images to any server.</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Related Guides</h2>
+      <div class="related-links">
+        <a class="related-chip" href="/guides/hdr-png/">HDR PNG Guide</a>
+        <a class="related-chip" href="/guides/hdr-avatar-not-glowing/">Avatar Not Glowing?</a>
+        <a class="related-chip" href="/guides/hdr-avatar-upload-tips/">Upload Tips</a>
+        <a class="related-chip" href="/guides/hdr-avatar-troubleshooting/">Troubleshooting</a>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2026 Flashblind.me</p>
+    </footer>
+  </main>
+</body>
+</html>

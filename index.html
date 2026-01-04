@@ -1341,7 +1341,13 @@
         <li><a href="/guides/threads-hdr-avatar/">Threads HDR avatar</a></li>
         <li><a href="/guides/facebook-hdr-avatar/">Facebook HDR avatar</a></li>
         <li><a href="/guides/hdr-png/">HDR PNG for social media</a></li>
+        <li><a href="/guides/discord-hdr-png/">Discord HDR PNG</a></li>
         <li><a href="/guides/hdr-avatar-not-glowing/">Why Is My HDR Avatar Not Glowing?</a></li>
+        <li><a href="/guides/hdr-avatar-checklist/">HDR avatar checklist</a></li>
+        <li><a href="/guides/hdr-avatar-upload-tips/">HDR avatar upload tips</a></li>
+        <li><a href="/guides/hdr-avatar-device-check/">HDR screen check</a></li>
+        <li><a href="/guides/hdr-avatar-troubleshooting/">HDR avatar troubleshooting hub</a></li>
+        <li><a href="/guides/hdr-png-glossary/">HDR PNG glossary</a></li>
       </ul>
     </section>
 
@@ -1739,6 +1745,13 @@
         trackEvent('share_x_click');
       });
     }
+
+    const guideLinks = document.querySelectorAll('.guides-links a, .guides-section a');
+    guideLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        trackEvent('open_guide', { href: link.getAttribute('href') || '' });
+      });
+    });
   </script>
   <!-- Cloudflare Web Analytics -->
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ef3c1b9ed9c0430d8239b9f06d187665"}'></script>
