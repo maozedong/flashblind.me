@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HDR Avatar Checklist</title>
+<meta name="description" content="Ensure your HDR avatar glows perfectly. A complete checklist for preserving brightness and metadata on supported screens.">
+<link rel="canonical" href="https://flashblind.me/guides/hdr-avatar-checklist/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HDR Avatar Checklist">
+<meta property="og:description" content="Ensure your HDR avatar glows perfectly.">
+<meta property="og:url" content="https://flashblind.me/guides/hdr-avatar-checklist/">
+<meta property="og:image" content="https://flashblind.me/demo.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="HDR Avatar Checklist">
+<meta name="twitter:description" content="Ensure your HDR avatar glows perfectly.">
+<meta name="twitter:image" content="https://flashblind.me/demo.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+--bg-core: #000000;
+--bg-surface: #121212;
+--accent-primary: #FFCC00;
+--accent-secondary: #FF5500;
+--text-main: #FFFFFF;
+--text-muted: #9a9a9a;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+background: radial-gradient(circle at top, #1b1b1b 0%, #050505 45%, #000 100%);
+color: var(--text-main);
+padding: 48px 20px;
+line-height: 1.5;
+}
+.container { max-width: 820px; margin: 0 auto; }
+header { margin-bottom: 28px; }
+h1 {
+font-family: 'Outfit', sans-serif;
+font-size: 2.6rem;
+line-height: 1.1;
+background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+margin-bottom: 12px;
+}
+.lead { color: var(--text-muted); font-size: 1.05rem; }
+.card {
+background: rgba(18, 18, 18, 0.88);
+border: 1px solid #333;
+border-radius: 16px;
+padding: 24px;
+margin: 20px 0;
+}
+.cheat-sheet {
+border: 1px solid var(--accent-primary);
+box-shadow: 0 0 25px rgba(255, 204, 0, 0.15);
+background: #111;
+}
+h2 {
+font-family: 'Outfit', sans-serif;
+color: var(--text-main);
+margin-bottom: 16px;
+font-size: 1.5rem;
+}
+.cheat-sheet h2 {
+color: var(--accent-primary);
+text-transform: uppercase;
+letter-spacing: 1px;
+font-size: 0.9rem;
+}
+.steps { list-style: none; }
+.steps li {
+margin: 12px 0;
+color: var(--text-main);
+font-size: 1rem;
+display: flex;
+align-items: flex-start;
+}
+.step-marker {
+flex-shrink: 0;
+width: 24px;
+height: 24px;
+background: var(--accent-primary);
+color: #000;
+font-weight: 800;
+border-radius: 50%;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+margin-right: 12px;
+font-size: 0.85rem;
+box-shadow: 0 0 8px var(--accent-primary);
+margin-top: 2px;
+}
+.steps strong { color: #fff; font-weight: 600; margin-right: 4px; }
+.bullet-list { list-style: none; padding-left: 8px; }
+.bullet-list li {
+margin-bottom: 10px;
+position: relative;
+padding-left: 20px;
+color: var(--text-muted);
+}
+.bullet-list li::before {
+content: "•";
+color: var(--accent-secondary);
+position: absolute;
+left: 0;
+font-weight: bold;
+}
+.bullet-list strong { color: var(--text-main); }
+.cta {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+gap: 10px;
+background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+color: #000;
+padding: 16px 32px;
+border-radius: 999px;
+text-decoration: none;
+font-weight: 800;
+font-size: 1.1rem;
+margin-top: 20px;
+box-shadow: 0 0 20px rgba(255, 204, 0, 0.4);
+transition: transform 0.2s;
+}
+.cta:hover { transform: scale(1.05); }
+.faq h3 {
+font-size: 1.1rem;
+color: var(--text-main);
+margin-bottom: 6px;
+font-weight: 600;
+}
+.faq p { color: var(--text-muted); line-height: 1.6; margin-bottom: 20px; font-size: 0.95rem; }
+.related-links {
+margin-top: 40px;
+display: flex;
+flex-wrap: wrap;
+gap: 12px;
+}
+.related-link {
+background: rgba(255, 255, 255, 0.05);
+color: var(--text-muted);
+padding: 8px 16px;
+border-radius: 8px;
+text-decoration: none;
+font-size: 0.9rem;
+transition: background 0.2s;
+}
+.related-link:hover {
+background: rgba(255, 255, 255, 0.1);
+color: var(--text-main);
+}
+footer {
+margin-top: 40px;
+border-top: 1px solid #333;
+padding-top: 20px;
+color: var(--text-muted);
+font-size: 0.9rem;
+text-align: center;
+}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QG35CDVJXT"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-QG35CDVJXT');
+</script>
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "HDR Avatar Checklist",
+  "description": "Ensure your HDR avatar glows perfectly. A complete checklist for preserving brightness and metadata on supported screens.",
+  "image": "https://flashblind.me/demo.png",
+  "author": {
+    "@type": "Person",
+    "name": "Ostap Nagovitsyn",
+    "url": "https://github.com/maozedong"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Flashblind",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://flashblind.me/favicon.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://flashblind.me/guides/hdr-avatar-checklist/"
+  },
+  "dateModified": "2026-01-06"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Flashblind",
+      "item": "https://flashblind.me/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "HDR Avatar Checklist",
+      "item": "https://flashblind.me/guides/hdr-avatar-checklist/"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+<main class="container">
+<header>
+<h1>HDR Avatar Glow Checklist</h1>
+<p class="lead">Glow isn’t random. Run this quick checklist so your PNG hits the timeline like a flashbang (and stays normal on SDR).</p>
+<a class="cta" href="https://flashblind.me/">⚡ Create HDR Image</a>
+</header>
+<section class="card cheat-sheet">
+<h2>The Checklist</h2>
+<ol class="steps">
+<li><span class="step-marker">1</span><span><strong>Upload the Original PNG.</strong> Always use the exact file generated by Flashblind.</span></li>
+<li><span class="step-marker">2</span><span><strong>Max Brightness.</strong> Increase screen brightness to 100% to view the full effect.</span></li>
+<li><span class="step-marker">3</span><span><strong>Check Compatibility.</strong> Ensure your screen is HDR-capable.</span></li>
+<li><span class="step-marker">4</span><span><strong>No Filters.</strong> Do not apply any filters during the upload process.</span></li>
+<li><span class="step-marker">5</span><span><strong>No Cropping.</strong> Avoid cropping tools that may discard metadata.</span></li>
+<li><span class="step-marker">6</span><span><strong>Direct Upload.</strong> Select the file directly from your files or photos.</span></li>
+<li><span class="step-marker">7</span><span><strong>Avoid Compression.</strong> Some services compress images which removes the glow.</span></li>
+<li><span class="step-marker">8</span><span><strong>Verify Result.</strong> View the final post on a supported screen to confirm.</span></li>
+</ol>
+</section>
+<section class="card">
+<h2>Common Mistakes</h2>
+<ul class="bullet-list">
+<li><strong>Taking a Screenshot:</strong> Screenshots of the image will strip all HDR metadata instantly.</li>
+<li><strong>Sending via Chat:</strong> Messaging services often compress the file, converting it to SDR.</li>
+<li><strong>Editing Externally:</strong> Opening and saving in other tools flattens the brightness data.</li>
+<li><strong>Low Power Mode:</strong> Many screens dim and disable HDR features to save battery.</li>
+<li><strong>Wrong File Type:</strong> Converting to JPG or other formats will lose the effect.</li>
+</ul>
+</section>
+<section class="card">
+<h2>Quick Screen Test</h2>
+<ol class="steps">
+<li><span class="step-marker">1</span><span>Open the image in full screen view.</span></li>
+<li><span class="step-marker">2</span><span>Turn your screen brightness all the way up.</span></li>
+<li><span class="step-marker">3</span><span>Observe if the bright areas are significantly brighter than the surrounding areas.</span></li>
+</ol>
+</section>
+<section class="card faq">
+<h2>FAQ</h2>
+<h3>Why don't I see the glow?</h3>
+<p>Your screen may not be HDR-capable, or the brightness is too low. SDR screens will show a normal image.</p>
+<h3>Can I resize the image?</h3>
+<p>Resizing often involves re-encoding, which destroys the metadata needed for the glow effect.</p>
+<h3>Does this work on all screens?</h3>
+<p>No, the glow is only visible on screens that support High Dynamic Range content.</p>
+<h3>What if I need to edit it?</h3>
+<p>It is recommended to edit your source image before converting it with Flashblind to preserve the final output data.</p>
+</section>
+<div class="related-links">
+<a href="/guides/hdr-avatar-not-glowing/" class="related-link">Troubleshooting Guide</a>
+<a href="/guides/instagram-glow-avatar/" class="related-link">Glow Upload Guide</a>
+<a href="/guides/x-hdr-avatar/" class="related-link">Timeline Glow Guide</a>
+<a href="/guides/hdr-png/" class="related-link">About HDR PNG</a>
+</div>
+<footer>
+Flashblind.me
+</footer>
+</main>
+</body>
+</html>

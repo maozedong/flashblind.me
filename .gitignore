@@ -33,3 +33,6 @@ dist/
 
 # Test files
 *.wasm
+
+# Local screenshots
+Screenshot *.png
