@@ -502,6 +502,17 @@
       transform: scale(1.05);
     }
 
+    .share-btn-copy {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-main);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .share-btn-copy:hover {
+      border-color: rgba(255, 204, 0, 0.55);
+      transform: scale(1.03);
+    }
+
     .share-hint {
       font-size: 12px;
       color: var(--text-muted);
@@ -1116,8 +1127,8 @@
 
   <header>
     <h1>Make Your Profile Glow</h1>
-    <p class="subtitle">Turn your avatar into a light source. Visible on iPhone, Mac, and HDR screens.</p>
-    <button class="main-cta" onclick="document.getElementById('fileInput').click()">Upload Image</button>
+    <p class="subtitle">Your PFP is too dim. Fix it in 10 seconds — and watch it <strong>glow</strong> on good screens (iPhone/Mac/HDR).</p>
+    <button class="main-cta" onclick="document.getElementById('fileInput').click()">Upload &amp; Turn the Lights On</button>
   </header>
 
   <main class="container">
@@ -1188,7 +1199,7 @@
 
     <!-- No-Filter Warning -->
     <div class="filter-warning" role="alert">
-      <strong>Important:</strong> Do not apply filters when uploading to Instagram/Twitter, or the glow effect will break.
+      <strong>Glow rule:</strong> upload the PNG <strong>as-is</strong>. Filters/editors = glow killer.
     </div>
 
     <!-- Device HDR Badge -->
@@ -1199,16 +1210,17 @@
 
     <!-- Social Share -->
     <div class="share-section">
-      <a href="https://twitter.com/intent/tweet?text=Just%20upgraded%20to%20an%20HDR%20avatar.%20Turn%20your%20brightness%20to%20100%25%20and%20look%20at%20my%20profile%20%E2%9A%A0%EF%B8%8F%0A%0AGet%20yours%3A%20flashblind.me&hashtags=flashblind"
+      <a href="https://twitter.com/intent/tweet?text=Glow%20check%20%E2%9A%A1%EF%B8%8F%20Turn%20your%20brightness%20to%20100%25%20and%20look%20at%20my%20PFP.%0A%0AMake%20yours%20in%2010s%3A%20https%3A%2F%2Fflashblind.me%2F%3Futm_source%3Dx%26utm_medium%3Dsocial%26utm_campaign%3Dglow_avatar&hashtags=flashblind,glowcheck"
          target="_blank"
          rel="noopener noreferrer"
          class="share-btn share-btn-x">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
           <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
         </svg>
-        Share on X
+        Post a Glow Check on X
       </a>
-      <span class="share-hint">Tell your friends to turn up their brightness</span>
+      <button type="button" class="share-btn share-btn-copy" id="copyLinkBtn">Copy link</button>
+      <span class="share-hint">Post the PNG to X. No screenshots. No filters. Pure glow.</span>
     </div>
 
     <section class="platforms-section" aria-labelledby="platforms-heading">
@@ -1392,6 +1404,7 @@
     const mobileUploadBtn = document.getElementById('mobileUploadBtn');
     const mobileDownloadBtn = document.getElementById('mobileDownloadBtn');
     const shareBtnX = document.querySelector('.share-btn-x');
+    const copyLinkBtn = document.getElementById('copyLinkBtn');
 
     function trackEvent(name, params = {}) {
       if (typeof window.gtag === 'function') {
@@ -1745,6 +1758,21 @@
     if (shareBtnX) {
       shareBtnX.addEventListener('click', () => {
         trackEvent('share_x_click');
+      });
+    }
+
+    if (copyLinkBtn) {
+      copyLinkBtn.addEventListener('click', async () => {
+        const url = 'https://flashblind.me/?utm_source=share&utm_medium=copy&utm_campaign=glow_avatar';
+        try {
+          await navigator.clipboard.writeText(url);
+          copyLinkBtn.textContent = 'Copied';
+          setTimeout(() => (copyLinkBtn.textContent = 'Copy link'), 1500);
+          trackEvent('copy_link', { target: 'home' });
+        } catch {
+          trackEvent('copy_link_failed', { target: 'home' });
+          window.prompt('Copy link:', url);
+        }
       });
     }
 
